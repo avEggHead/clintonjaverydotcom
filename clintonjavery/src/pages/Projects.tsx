@@ -16,7 +16,7 @@ export default function Projects() {
           <p>
             A digital garden of speculative science — exploring unconventional theories blending imagination and rational structure.
           </p>
-          <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript, Azure Storage, Static Website</p>
+          <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript, Azure Storage, Static Website, Cloudflare</p>
         </div>
 
         <div>

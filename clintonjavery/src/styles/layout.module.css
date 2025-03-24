@@ -5,13 +5,23 @@
   width: 100%;
 }
 
+.pageContainer {
+  max-width: 900px; /* Centered layout on larger screens */
+  margin: 0 auto;
+  padding: 1rem clamp(1rem, 5vw, 2rem); /* Responsive horizontal padding */
+  box-sizing: border-box;
+  width: 100%;
+}
+
 .mainContent {
   flex-grow: 1;
-  max-width: 900px;
-  margin: 0 auto;
   width: 100%;
-  padding: 20px;
+  padding: 1.5rem clamp(1rem, 5vw, 2rem); /* Add balanced side padding */
+  margin: 0 auto;
+  max-width: 900px;
+  overflow-x: hidden;
 }
+
 
 .galleryGrid {
   display: grid;
@@ -99,4 +109,10 @@
   background-color: #555;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.heading, .pageSubtext {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
