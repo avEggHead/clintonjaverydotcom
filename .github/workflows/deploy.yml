@@ -43,7 +43,7 @@ jobs:
 
     - name: 🚀 Upload new build
       run: |
-        az storage blob upload-batch --account-name ${{ secrets.c }} \
+        az storage blob upload-batch --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }} \
                                      --account-key ${{ secrets.AZURE_STORAGE_ACCOUNT_KEY }} \
                                      --destination '$web' \
                                      --source './clintonjavery/dist' \
