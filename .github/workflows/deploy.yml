@@ -19,10 +19,12 @@ jobs:
         node-version: 18
 
     - name: 📦 Install dependencies
+      working-directory: ./clintonjavery
       run: npm install
       
 
     - name: 🛠 Build the site
+      working-directory: ./clintonjavery
       run: npm run build
 
     - name: ⚙️ Install Azure CLI
@@ -44,7 +46,7 @@ jobs:
         az storage blob upload-batch --account-name ${{ secrets.c }} \
                                      --account-key ${{ secrets.AZURE_STORAGE_ACCOUNT_KEY }} \
                                      --destination '$web' \
-                                     --source './dist' \
+                                     --source './clintonjavery/dist' \
                                      --overwrite
       env:
         AZURE_STORAGE_ACCOUNT_NAME: ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }}
