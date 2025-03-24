@@ -21,28 +21,55 @@ export default function Projects() {
 
         <div>
           <h2>
-            <a href="https://www.fitmetr.com" target="_blank" rel="noopener noreferrer">
-              Fitmetr.com
-            </a>
-          </h2>
-          <p>
-            A fitness accountability tool with a social challenge system and live progress tracking. (Currently offline / archival only.)
-          </p>
-          <p><strong>Tech Stack:</strong> ASP.NET, RazorPages, AWS hosting</p>
-        </div>
-
-        <div>
-          <h2>
             <a href="https://www.scrumsay.com" target="_blank" rel="noopener noreferrer">
               Scrumsay.com
             </a>
           </h2>
           <p>
-            A productivity and team communication tool built around fast, structured daily check-ins. Originally inspired by agile standups.
+            An agile dev team tool built for effort estimation. Originally inspired by not being able to find a forever-free alternative.
           </p>
           <p><strong>Tech Stack:</strong> HTML, JavaScript, SignalR, Azure hosting</p>
         </div>
       </div>
+
+      <div>
+        <h2>Memorizer 5000</h2>
+        <p>
+        A mobile app for memorizing passages of text through increasing fill-in-the-blank recall. Built using Unity and exported as an Android APK.
+        </p>
+        <p><strong>Tech Stack:</strong> Unity, C#</p>
+        <a
+          href="https://drive.usercontent.google.com/download?id=158zkcRdpwcsYAlOeIKOMcM_cgBdygt4j&export=download&authuser=0"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "#0066cc", fontWeight: "bold" }}
+        >
+          Download APK via Google Drive
+        </a>
+
+        <div style={{ marginTop: "10px" }}>
+          <p>Or scan to download:</p>
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://drive.usercontent.google.com/download?id=158zkcRdpwcsYAlOeIKOMcM_cgBdygt4j%26export=download%26authuser=0"
+            alt="Download Memorizer 5000 APK"
+            style={{ width: "150px", height: "150px" }}
+          />
+        </div>
+      </div>
+
+      <div>
+          <h2>
+            <a href="https://www.fitmetr.com" target="_blank" rel="noopener noreferrer">
+              Fitmetr.com
+            </a>
+          </h2>
+          <p>
+            A fitness accountability tool with live progress tracking. (Currently offline / archival only.)
+          </p>
+          <p><strong>Tech Stack:</strong> ASP.NET, RazorPages, AWS hosting</p>
+        </div>
+
+
     </div>
   );
 }

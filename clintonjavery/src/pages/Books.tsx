@@ -10,25 +10,46 @@ type Book = {
 
 const books: Book[] = [
   {
+    title: "Blackwater",
+    author: "Jeremy Scahill",
+    status: "reading",
+    date: "2024",
+    blurb: "A no holds barred exposition of a defense contracting company that gained notoriety (and infamy) during the Iraq War.",
+  },
+  {
+    title: "Antifragile",
+    author: "Nassim Nicholas Taleb",
+    status: "reading",
+    date: "2024",
+    blurb: "The central idea being explored here is that there is a category of things that get better from disorder.",
+  },
+  {
     title: "The Peripheral",
     author: "William Gibson",
     status: "finished",
     date: "2016",
-    blurb: "A fascinating blend of time travel and digital realism. Felt both dense and eerily plausible. Made me think differently about how tech reshapes identity.",
+    blurb: "Strap in for an excellent sci-fi thriller in a post/pre-apocalyptic setting.  The action sequences keep you on the edge of your comfy reading couch, and the premise is a truly unique blend of time travel and uploaded consciouness.  It's Back to the Future meets The Matrix.",
   },
   {
     title: "Legion",
     author: "Brandon Sanderson",
     status: "finished",
     date: "February 2024",
-    blurb: "Short, sharp, clever. Loved the psychological twist on multiple personalities. Easy to read but left a lingering impression.",
+    blurb: "Wonderful sci-fi exploration of what constitutes mental illness.  The tension between the longing for normalcy and the desire for power is artfully dealt with by Sanderson.",
   },
   {
     title: "The Garden of Eden",
     author: "Ernest Hemingway",
     status: "finished",
     date: "March 2025",
-    blurb: "A strange book about the",
+    blurb: "A strange book about the collapse of a relationship when the bonds of tradition and culture are difficult to navigate for a couple seemingly on a permanent vacation in a foreign paradise.",
+  },
+  {
+    title: "Code Complete",
+    author: "Steve McConnell",
+    status: "reading",
+    date: "2023",
+    blurb: "A comprehensive guide that, though somewhat dated, still has much to offer to programmers who are interested in constructing high quality software.",
   },
 ];
 

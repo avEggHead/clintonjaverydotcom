@@ -7,14 +7,14 @@ export default function About() {
       <h1 className={styles.pageHeading}>About Me</h1>
       <p className={styles.pageSubtext}>
       Hey, I’m Clinton Avery. This is my place to share my work, thoughts, and interests.
-        I'm a husband, father, and software engineer, problem solver and builder of useful (and sometimes strange) things.
+        I'm a husband, father, software engineer, problem solver, and builder of useful (and sometimes strange) things.
         I live in rural North Carolina on a homestead with my wife and kids, and a few chickens.  When I'm not 
         programming computers for work, I'm reading books, drawing, lifting weights, trying to play the piano, 
         or helping my wife with the homestead.      </p>
 
       <div style={{ marginTop: "40px", display: "flex", gap: "20px", flexWrap: "wrap" }}>
         <a
-          href="https://github.com/clintonavery"
+          href="https://github.com/avEggHead"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.buttonLink}
@@ -24,7 +24,7 @@ export default function About() {
         </a>
 
         <a
-          href="https://www.linkedin.com/in/clintonavery"
+          href="https://www.linkedin.com/in/clinton-avery-593337160/"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.buttonLink}
@@ -34,7 +34,7 @@ export default function About() {
         </a>
 
         <a
-          href="/resume.pdf"
+          href="/Clinton_Avery_Resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.buttonLink}
