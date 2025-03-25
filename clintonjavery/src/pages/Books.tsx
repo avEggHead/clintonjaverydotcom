@@ -57,7 +57,7 @@ export default function Books() {
   return (
     <div className={styles.pageContainer}>
       <h1 className={styles.pageHeading}>Bookshelf</h1>
-      <p className={styles.pageSubtext}>
+      <p style={{ paddingRight: "2rem" }}>
         A record of what I’ve been reading and what I’ve taken away from it.
       </p>
 
@@ -66,7 +66,7 @@ export default function Books() {
           <div key={idx}>
             <h2>{book.title}</h2>
             <p><em>by {book.author}</em> — <strong>{book.status}</strong> <span style={{ color: "#888" }}>({book.date})</span></p>
-            <p>{book.blurb}</p>
+            <p style={{ paddingRight: "2rem" }}>{book.blurb}</p>
           </div>
         ))}
       </div>
