@@ -12,7 +12,7 @@ export default function Post() {
     <div className={styles.pageContainer}>
       <h1 className={styles.pageHeading}>{post.title}</h1>
       <p style={{ color: "#888" }}>{post.date}</p>
-      <div style={{ whiteSpace: "pre-wrap", lineHeight: "1.6" }}>
+      <div style={{ whiteSpace: "pre-wrap", lineHeight: "1.6", paddingRight: "3rem", textAlign: "justify" }}>
         {post.content}
       </div>
     </div>

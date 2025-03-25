@@ -114,5 +114,8 @@
 .heading, .pageSubtext {
   word-wrap: break-word;
   overflow-wrap: break-word;
+  text-align: justify;
   max-width: 100%;
+  padding: 0 clamp(4rem, 5vw, 10rem); /* left & right padding */
+  box-sizing: border-box;
 }

@@ -4,7 +4,7 @@ export default function Projects() {
   return (
     <div className={styles.pageContainer}>
       <h1 className={styles.pageHeading}>Projects</h1>
-      <p className={styles.pageSubtext}>Here are a few of the things I've built:</p>
+      <p>Here are a few of the things I've built:</p>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
         <div>
@@ -13,7 +13,7 @@ export default function Projects() {
               Theorhetorical.com
             </a>
           </h2>
-          <p>
+          <p style={{ paddingRight: "2rem" }}>
             A digital garden of speculative science — exploring unconventional theories blending imagination and rational structure.
           </p>
           <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript, Azure Storage, Static Website, Cloudflare</p>
@@ -25,7 +25,7 @@ export default function Projects() {
               Scrumsay.com
             </a>
           </h2>
-          <p>
+          <p style={{ paddingRight: "2rem" }}>
             An agile dev team tool built for effort estimation. Originally inspired by not being able to find a forever-free alternative.
           </p>
           <p><strong>Tech Stack:</strong> HTML, JavaScript, SignalR, Azure hosting</p>
@@ -34,7 +34,7 @@ export default function Projects() {
 
       <div>
         <h2>Memorizer 5000</h2>
-        <p>
+        <p style={{ paddingRight: "2rem" }}>
         A mobile app for memorizing passages of text through increasing fill-in-the-blank recall. Built using Unity and exported as an Android APK.
         </p>
         <p><strong>Tech Stack:</strong> Unity, C#</p>
@@ -63,7 +63,7 @@ export default function Projects() {
               Fitmetr.com
             </a>
           </h2>
-          <p>
+          <p style={{ paddingRight: "2rem" }}>
             A fitness accountability tool with live progress tracking. (Currently offline / archival only.)
           </p>
           <p><strong>Tech Stack:</strong> ASP.NET, RazorPages, AWS hosting</p>

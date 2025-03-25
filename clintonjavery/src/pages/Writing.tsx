@@ -6,7 +6,7 @@ export default function Writing() {
   return (
     <div className={styles.pageContainer}>
       <h1 className={styles.pageHeading}>Writing</h1>
-      <p className={styles.pageSubtext}>Essays, reflections, and thoughts in progress.</p>
+      <p>Essays, reflections, and thoughts in progress.</p>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
         {posts.map((post) => (
