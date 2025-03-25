@@ -27,5 +27,25 @@ export const galleryImages = [
         src: "/images/star_wars_hoth.jpg",
         alt: "Luke exiting T-47 speeder",
     },
+    {
+        src: "/images/beebarn.jpg",
+        alt: "The BeeBarn",
+    },
+    {
+        src: "/images/bk_hats.jpg",
+        alt: "Birthday at BK",
+    },
+    {
+        src: "/images/pinochio.jpg",
+        alt: "Pinochio",
+    },
+    {
+        src: "/images/pool.jpg",
+        alt: "pool",
+    },
+    {
+        src: "/images/welcome_plant.png",
+        alt: "welcome_plant",
+    },
   ];
   
