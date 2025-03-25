@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from "../styles/layout.module.css";
 import { FaGithub, FaLinkedin, FaFileAlt, FaEnvelope, FaClipboard } from "react-icons/fa";
-import { BiColor } from "react-icons/bi";
 
 export default function About() {
   const [showModal, setShowModal] = useState(false);
