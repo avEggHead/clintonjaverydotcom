@@ -48,10 +48,11 @@ jobs:
                                      --source './clintonjavery/dist' \
                                      --overwrite
 
-    - name: 🚽 Purge CDN Cache
+    - name: 🚽 Purge CDN Cache (backgrounded)
       run: |
-        az cdn endpoint purge \
-          --resource-group clintonaverydotcom \
-          --profile-name clintonavery-cdn \
-          --name clintonavery \
-          --content-paths '/*'
+        echo "Starting CDN purge in background..."
+        nohup az cdn endpoint purge \
+            --resource-group clintonaverydotcom \
+            --profile-name clintonavery-cdn \
+            --name clintonavery \
+            --content-paths '/*' > /dev/null 2>&1 &

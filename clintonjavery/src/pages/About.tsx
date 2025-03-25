@@ -33,7 +33,7 @@ export default function About() {
           LinkedIn
         </a>
 
-        <a href="./Clinton_Avery_Resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.buttonLink}>
+        <a href="./public/Clinton_Avery_Resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.buttonLink}>
           <FaFileAlt style={{ marginRight: "8px" }} />
           Résumé
         </a>
