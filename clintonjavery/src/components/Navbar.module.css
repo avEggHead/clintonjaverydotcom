@@ -24,12 +24,23 @@
 }
 
 .hamburger {
+  all: unset; /* Remove default browser styles */
   display: none;
   font-size: 2rem;
-  background: none;
-  border: none;
+  color: #ffffff; /* Matches your navbar text */
   cursor: pointer;
+  padding: 0.5rem;
+  -webkit-tap-highlight-color: transparent; /* Remove iOS tap highlight */
 }
+
+.hamburger:focus {
+  outline: none;
+}
+
+.hamburger:hover {
+  color: #c0ffc0; /* Optional: slight hover color for feedback */
+}
+
 
 /* Mobile styles */
 @media (max-width: 768px) {
