@@ -8,6 +8,21 @@ export type Post = {
   
   export const posts: Post[] = [
     {
+      slug: "Where's the bottleneck",
+      title: "Does GenAI Remove the Bottleneck in Development?",
+      date: "March 2025",
+      preview: "The problem has never been the code.",
+      content: `The problem has never been the code.  At least not on my team.  The code is the easy part, and the fun part.  And I don’t mean that writing good code is easy, it’s just the easy part when you compare it to the rest of the software development lifecycle.  Even the hardest parts of writing code are the funnest and easiest parts of the overall SDLC.  
+  That’s just solving a puzzle you know?  You figure out how the pieces work and you can get them to fit together.  But that’s just one tiny element in the vast ecosystem of tools and technologies that comprise an enterprise software solution.  There’s a puzzle beyond the puzzle and that’s where the difficulty really lies.
+  Build and release pipelines, server management, firewalls, API gateways, monitoring stacks, databases, release configuration variables, feature flags, regression testing, user acceptance testing, functional testing…
+  Cloud infrastructure, on-prem infrastructure, static code analysis tools, code reviews, pull requests, source control, documentation, server patches...
+  AKS cluster management, containers, installer files, SDKs, language framework upgrades, server migrations, release windows…
+  And I haven’t even mentioned the actual business requirements.  Or the so-called “soft skills” of people management, leadership, strategy, vision, communication, prioritization.  This list could go on forever.
+  Hardly any of that complexity is addressed even a little bit by having GenAI integrated into your IDE.
+  So am I telling myself this to make me feel better or feel like I have better job security.  Maybe in part.  But also I’m trying to have a realistic accounting of what exactly the problems are, where the bottle necks are in the development process, and how they can realistically be relieved.  GenAI is part of it, but there’s still a lot of work to be done even when incorporating a friendly robot into the workflow.  Code is the first step on the journey it’s not the bottleneck.
+  `.trim(),
+    },
+    {
       slug: "bicycle-or-wheelchair",
       title: "Is Generative AI a Bicycle or a Wheelchair for the Mind?",
       date: "June 2024",
