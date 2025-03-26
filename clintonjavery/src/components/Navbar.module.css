@@ -11,7 +11,9 @@
   max-width: 900px;
   margin: 0 auto;
 }
-
+.navLink:hover {
+  color: #0a7cff;
+}
 .navLinks {
   display: flex;
   gap: 1rem;

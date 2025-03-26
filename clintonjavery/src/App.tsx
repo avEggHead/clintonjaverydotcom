@@ -2,13 +2,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Post from "./pages/Post";
-import Books from "./pages/Books";
+import Reading from "./pages/Reading";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import styles from "./styles/layout.module.css";
 import Writing from "./pages/Writing";
+import Support from "./pages/Support";
 
 function App() {
   return (
@@ -24,8 +25,9 @@ function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/writing" element={<Writing />}/>
             <Route path="/writing/:slug" element={<Post />} />
-            <Route path="/books" element={<Books />} />
+            <Route path="/reading" element={<Reading />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/support" element={<Support />} />
             <Route path="/about" element={<About />} />
           </Routes>
         </main>

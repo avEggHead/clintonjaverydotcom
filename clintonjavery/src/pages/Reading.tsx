@@ -31,6 +31,13 @@ const books: Book[] = [
     blurb: "Strap in for an excellent sci-fi thriller in a post/pre-apocalyptic setting.  The action sequences keep you on the edge of your comfy reading couch, and the premise is a truly unique blend of time travel and uploaded consciouness.  It's Back to the Future meets The Matrix.",
   },
   {
+    title: "An Indigenous Peoples History of the United States",
+    author: "Roxanne Dunbar-Ortiz",
+    status: "finished",
+    date: "2025",
+    blurb: "An important and often overlooked perspective on the history of the United States.  The emphasis here is placed on the dreadful impact that colonialism had on the native population of the American Continents.",
+  },
+  {
     title: "Legion",
     author: "Brandon Sanderson",
     status: "finished",
@@ -42,7 +49,7 @@ const books: Book[] = [
     author: "Ernest Hemingway",
     status: "finished",
     date: "March 2025",
-    blurb: "A strange book about the collapse of a relationship when the bonds of tradition and culture are difficult to navigate for a couple seemingly on a permanent vacation in a foreign paradise.",
+    blurb: "A strange book about the collapse of a relationship when the bonds of tradition and culture are difficult to navigate for a couple seemingly on a permanent vacation in a foreign paradise.  I can't say that I liked this book, but after reading it I can see why people say Hemingway is a great writer.",
   },
   {
     title: "Code Complete",
@@ -51,9 +58,16 @@ const books: Book[] = [
     date: "2023",
     blurb: "A comprehensive guide that, though somewhat dated, still has much to offer to programmers who are interested in constructing high quality software.",
   },
+  {
+    title: "Things Fall Apart",
+    author: "Chinua Achebe",
+    status: "reading",
+    date: "2025",
+    blurb: "So far an engaging story about an African tribesman and how he takes his place in his society.",
+  },
 ];
 
-export default function Books() {
+export default function Reading() {
   return (
     <div className={styles.pageContainer}>
       <h1 className={styles.pageHeading}>Bookshelf</h1>
