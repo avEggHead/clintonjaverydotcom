@@ -15,7 +15,7 @@ export default function Support() {
 
       <div className={styles.qrContainer}>
         <img
-          src="./src/assets/venmo_qr.jpg"
+          src="/assets/venmo_qr.png"
           alt="Venmo QR code"
           className={styles.qrImage}
         />
