@@ -5,7 +5,7 @@ export default function Support() {
     <div className={styles.supportSection}>
       <p style={{ paddingRight: "2rem", paddingLeft: "2rem"}}>If you like what I'm up to, please support me with a coffee ☕</p>
       <a
-        href="https://venmo.com/u/clinton-avery-2"
+        href="https://venmo.com/u/clintonjavery"
         target="_blank"
         rel="noopener noreferrer"
         className={styles.venmoButton}
