@@ -1,0 +1,29 @@
+.formGroup {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .formGroup label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  input,
+  select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #555;
+    background-color: #1e1e1e;
+    color: white;
+  }
+  
+  .resultBox {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #2d2d2d;
+    border-radius: 8px;
+    font-size: 1.1rem;
+  }
+  

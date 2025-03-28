@@ -162,3 +162,37 @@
   font-size: 0.9rem;
   color: #ccc;
 }
+
+.toolsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.toolCard {
+  padding: 1.5rem;
+  background: #79dfc9;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease-in-out;
+}
+
+.toolCard:hover {
+  transform: translateY(-4px);
+}
+
+.toolButton {
+  display: inline-block;
+  margin-top: 1rem;
+  background-color: #d88639;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.toolButton:hover {
+  background-color: #287bb5;
+}

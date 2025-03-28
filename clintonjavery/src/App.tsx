@@ -10,6 +10,8 @@ import Footer from "./components/Footer";
 import styles from "./styles/layout.module.css";
 import Writing from "./pages/Writing";
 import Support from "./pages/Support";
+import Tools from "./pages/Tools";
+import TimeZoneConverter from "./tools/TimeZoneConverter";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
             <Route path="/writing/:slug" element={<Post />} />
             <Route path="/reading" element={<Reading />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/tools" element={<Tools />} />
+            <Route path="/tools/timezone" element={<TimeZoneConverter />} />  // placeholder
             <Route path="/support" element={<Support />} />
             <Route path="/about" element={<About />} />
           </Routes>
