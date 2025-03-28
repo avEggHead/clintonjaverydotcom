@@ -3,7 +3,7 @@ import styles from "../styles/layout.module.css";
 type Book = {
   title: string;
   author: string;
-  status: "reading" | "finished";
+  status: "reading" | "finished" | "want to read";
   blurb: string;
   date: string;
 };
@@ -64,6 +64,13 @@ const books: Book[] = [
     status: "reading",
     date: "2025",
     blurb: "So far an engaging story about an African tribesman and how he takes his place in his society.",
+  },
+  {
+    title: "Childhood's End",
+    author: "Arthur C. Clarke",
+    status: "want to read",
+    date: "--",
+    blurb: "A colleague mentioned that I might like this one after I said offhand that I welcome our Robot Overlords.",
   },
 ];
 
