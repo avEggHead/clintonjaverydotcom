@@ -1,12 +1,17 @@
-import styles from "../styles/layout.module.css"; 
+import styles from "../styles/layout.module.css";
 
 export default function Home() {
   return (
-    <div className={styles.pageContainer}>
-      <h1 className={styles.pageHeading}>Welcome</h1>
-      <p style={{ paddingRight: "2rem" }}>
-        A personal site to showcase my work, thoughts, and projects.
-      </p>
+    <div className={styles.heroContainer}>
+      <div className={styles.heroOverlay}>
+        <h1 className={styles.heroHeading}>Welcome</h1>
+        <p className={styles.heroSubtext}>
+          I make tools, write thoughts, and build fun things.
+        </p>
+        <a href="/projects" className={styles.heroButton}>
+          Explore Projects →
+        </a>
+      </div>
     </div>
   );
 }
