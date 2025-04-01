@@ -260,3 +260,11 @@
     transform: translateY(0);
   }
 }
+
+.disabledLink {
+  pointer-events: none;
+  color: gray;
+  text-decoration: none;
+  cursor: default;
+  opacity: 0.6;
+}

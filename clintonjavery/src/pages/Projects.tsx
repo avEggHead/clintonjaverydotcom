@@ -6,10 +6,10 @@ export default function Projects() {
       <h1 className={styles.pageHeading}>Projects</h1>
       <p>Here are a few of the things I've built:</p>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "30px" }} >
         <div>
           <h2>
-            <a href="https://www.theorhetorical.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.theorhetorical.com" target="_blank" rel="noopener noreferrer" style={{color: "blue"}}>
               Theorhetorical.com
             </a>
           </h2>
@@ -21,7 +21,7 @@ export default function Projects() {
 
         <div>
           <h2>
-            <a href="https://www.scrumsay.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.scrumsay.com" target="_blank" rel="noopener noreferrer" style={{color: "blue"}}>
               Scrumsay.com
             </a>
           </h2>
@@ -57,14 +57,28 @@ export default function Projects() {
         </div>
       </div>
 
+
       <div>
           <h2>
-            <a href="https://www.fitmetr.com" target="_blank" rel="noopener noreferrer">
-              Fitmetr.com
+            <a href="https://github.com/avEggHead/LabCoat" target="_blank" rel="noopener noreferrer" style={{color: "blue"}}>
+              LabCoat GitHub repo
             </a>
           </h2>
           <p style={{ paddingRight: "2rem" }}>
-            A fitness accountability tool with live progress tracking. (Currently offline / archival only.)
+          This is a C# programming learning aid.  It allows you to experiment with unfamiliar data structures, design patterns, and keywords.
+          It's handy because it makes it easy to keep track of your past experiments in an organized way.
+          </p>
+          <p><strong>Tech Stack:</strong> C# console app, GitHub repo</p>
+        </div>
+
+      <div>
+          <h2>
+            <a href="https://www.fitmetr.com" target="_blank" rel="noopener noreferrer" className={styles.disabledLink}>
+              Fitmetr.com  (Currently offline / archival only.)
+            </a>
+          </h2>
+          <p style={{ paddingRight: "2rem" }}>
+            A fitness accountability tool with live progress tracking.
           </p>
           <p><strong>Tech Stack:</strong> ASP.NET, RazorPages, AWS hosting</p>
         </div>
