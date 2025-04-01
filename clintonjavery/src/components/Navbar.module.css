@@ -17,12 +17,36 @@
 .navLinks {
   display: flex;
   gap: 1rem;
+  align-items: center;
+
 }
 
 .navLink {
+  color: white;  /* Make sure the links are white by default */
   text-decoration: none;
-  color: #ffffff;
   font-weight: bold;
+}
+
+/* Styling for the Contribute link */
+.contributeLink {
+  border: 1px solid #ffffff;  /* White border */
+  background-color: #055513;  
+  border-radius: px;
+  padding: 3px 12px;
+  font-weight: bold;
+  color: white;
+  display: inline-flex;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.contributeLink:hover {
+  background-color: #ececec;  /* Darker green on hover */
+  border-color: #ffffff;
+}
+
+/* Optional: Remove any default blue color for links */
+a {
+  color: inherit;
 }
 
 .hamburger {
