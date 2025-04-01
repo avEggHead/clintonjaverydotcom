@@ -21,7 +21,7 @@ export default function Tools() {
         <div className={styles.toolCard}>
           <h3>📝 Text Analyzer</h3>
           <p>Get real-time counts for your writing.</p>
-          <Link to="/tools/wordcounter" className={styles.toolButton}>
+          <Link to="/tools/textanalyzer" className={styles.toolButton}>
             Try it →
           </Link>
         </div>

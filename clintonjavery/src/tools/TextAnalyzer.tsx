@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "../styles/layout.module.css"; // or your custom tools.module.css
 
-export default function WordCharCounter() {
+export default function TextAnalyzer() {
   const [text, setText] = useState("");
 
   const wordCount = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
