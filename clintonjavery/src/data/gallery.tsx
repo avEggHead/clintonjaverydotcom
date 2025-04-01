@@ -2,7 +2,11 @@ export const galleryImages = [
     {
         src: "/images/beautiful_woman.jpg",
         alt: "beautiful",
-      },
+    },
+    {
+        src: "/images/junifer_orlandalf.jpg",
+        alt: "Junifer and Orlandalf",
+    },
     {
       src: "/images/old_living_room.jpg",
       alt: "Digital coloring and line drawing of our old living room",

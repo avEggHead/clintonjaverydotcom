@@ -20,6 +20,7 @@ export default function Navbar() {
           <a href="/writing" className={styles.navLink}>Writing</a>
           <a href="/reading" className={styles.navLink}>Reading</a>
           <a href="/gallery" className={styles.navLink}>Gallery</a>
+          <a href="/fun" className={styles.navLink}>Fun</a>
           <a href="/tools" className={styles.navLink}>Tools</a>
           <a href="/support" className={styles.contributeLink}>Contribute</a>
           <a href="/about" className={styles.navLink}>About</a>

@@ -13,6 +13,8 @@ import Contribute from "./pages/Contribute";
 import Tools from "./pages/Tools";
 import TimeZoneConverter from "./tools/TimeZoneConverter";
 import TextAnalyzer from "./tools/TextAnalyzer";
+import Fun from "./pages/Fun";
+import BalloonPopGame from "./fun/BalloonPopper";
 
 function App() {
   return (
@@ -30,11 +32,13 @@ function App() {
             <Route path="/writing/:slug" element={<Post />} />
             <Route path="/reading" element={<Reading />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/fun" element={<Fun />} />
             <Route path="/tools" element={<Tools />} />
             <Route path="/tools/timezone" element={<TimeZoneConverter />} />  // placeholder
             <Route path="/tools/textanalyzer" element={<TextAnalyzer/>} />
             <Route path="/support" element={<Contribute />} />
             <Route path="/about" element={<About />} />
+            <Route path="/fun/balloon-popper" element={<BalloonPopGame />} />
           </Routes>
         </main>
         <Footer />
