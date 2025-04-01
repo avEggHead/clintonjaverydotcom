@@ -27,3 +27,15 @@
     font-size: 1.1rem;
   }
   
+  .textArea {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: #1e1e1e;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    resize: vertical;
+  }
+  

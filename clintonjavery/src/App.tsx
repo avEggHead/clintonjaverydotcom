@@ -12,6 +12,7 @@ import Writing from "./pages/Writing";
 import Contribute from "./pages/Contribute";
 import Tools from "./pages/Tools";
 import TimeZoneConverter from "./tools/TimeZoneConverter";
+import WordCharCounter from "./tools/WordCharCounter";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/tools" element={<Tools />} />
             <Route path="/tools/timezone" element={<TimeZoneConverter />} />  // placeholder
+            <Route path="/tools/wordcounter" element={<WordCharCounter/>} />
             <Route path="/support" element={<Contribute />} />
             <Route path="/about" element={<About />} />
           </Routes>
