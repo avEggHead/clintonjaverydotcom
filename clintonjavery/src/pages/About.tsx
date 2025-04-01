@@ -33,8 +33,8 @@ export default function About() {
           LinkedIn
         </a>
 
-        <a
-          href="https://drive.google.com/file/d/1tQdZv_Rt6Kj0yf6q9fNrMpCoikhexQU4/view"
+        <a 
+          href="https://drive.google.com/file/d/1cGPmV4be7f4hyyhZen_aNZjMIkKlA82Q/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.buttonLink}
