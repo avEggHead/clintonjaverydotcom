@@ -8,6 +8,19 @@ export type Post = {
   
   export const posts: Post[] = [
     {
+      slug: "tech improvments are only goood if they save money",
+      title: "Don't ignore values beyond the bottom line",
+      date: "April 3 2025",
+      preview: "'Cost savings' is an easy win in tech, but",
+      content: `"Cost savings" is an easy win in tech, but it's not always the real value.   I recently sat through a discussion about autoscaling our Azure Kubernetes Service (AKS) cluster — and the pitch was all about saving money. I’m all for cost savings, who isn’t, but when I inquired a bit further  about the absolute numbers involved it got a bit foggy.
+	It turns out that a couple of things are kind of blocking a clear answer on this front.  One, at our organization we don’t really have the access in the Azure Portal to view the cost of anything.  So even if we implement the autoscaling as a cost saving measure, we can’t access the data to run the numbers before and after.  Which is nice.  Since that real data wasn’t available I started to do some hypotheticals.
+	With AKS this stuff gets tricky.  There’s a lot of terminology to know, but the important thing for this discussion is pods, nodes, and VMs.  Nodes are basically the same thing as VMs.  VMs are the things that cost money in AKS.  Each node/VM supports a certain number of pods, so as you scale down pods, if you scale them down enough, then you can actually turn off a VM and that would in turn actually mean a real savings in money.  
+	The question then becomes, ok how much money do you save if a VM gets turned off by scaling back enough pods, and the answer there depends on the type of VMs that you have set up for your node pool.  In our organization I was able to find the SKU for the VMs and figured out that even if enough nodes were scaled back so that a VM could be turned off and money saving could happen, it would only amount to approximately $4 per day, and that is if it was turned off for the entire day, which in practice simply would never happen. That’s ~$120/month at most — not nothing, but also not meaningful in the context of a multi-billion-dollar company.
+	If that is the case, then we really can’t be highlighting cost savings as a key benefit for this type of effort.  It’s really missing the point.  I think that’s the easy reason to go to, and one that would get everyone’s support and attention.  But in this case, I mean yeah you are technically saving money, a few dollars, but this is in the context of a company whose revenue is in the billions, so it’s just not really that big of a deal.  That means if the scaling is worth the effort it takes to set it up, you really have to understand the other reasons why it is beneficial.
+	That could be just the practice of optimization and efficiency.  Or making sure that your services aren’t using resources that could be used by other workloads during peak hours.  It just struck me that during this presentation the benefit that was highlighted as making this effort worthwhile was completely off the mark.  Scaling is good. Autoscaling is better. But we can’t afford to confuse "technically true" with "strategically valuable." If we want to prioritize well, we have to get better at measuring what actually matters.
+`.trim(),
+    },
+    {
       slug: "Where's the bottleneck",
       title: "Does GenAI Remove the Bottleneck in Development?",
       date: "March 2025",
