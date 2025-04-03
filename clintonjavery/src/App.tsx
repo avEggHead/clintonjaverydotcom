@@ -15,6 +15,7 @@ import TimeZoneConverter from "./tools/TimeZoneConverter";
 import TextAnalyzer from "./tools/TextAnalyzer";
 import Fun from "./pages/Fun";
 import BalloonPopGame from "./fun/BalloonPopper";
+import BalloonPopGameV2 from "./fun/BalloonPopperV2";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             <Route path="/support" element={<Contribute />} />
             <Route path="/about" element={<About />} />
             <Route path="/fun/balloon-popper" element={<BalloonPopGame />} />
+            <Route path="/fun/balloon-popperv2" element={<BalloonPopGameV2/>} />
           </Routes>
         </main>
         <Footer />

@@ -17,6 +17,15 @@ export default function Fun() {
               Play →
             </Link>
           </div>
+
+          <div className={styles.toolCard}>
+            <h3>🎈 Balloon Pop Version 2</h3>
+            <p>Pop the balloons and beat your best score! I'm iterating but saving past versions; send feedback if there are changes you like, dislike, or want.</p>
+            <Link to="/fun/balloon-popperv2" className={styles.toolButton}>
+              Play →
+            </Link>
+          </div>
+
           {/* <div className={styles.toolCard}>
             <h3>🧩 Word Scramble</h3>
             <p>Unscramble the letters before time runs out.</p>

@@ -26,6 +26,7 @@
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease, color 0.3s ease;
+  transition: font-weight initial ease, fo 0.3s ease;
 }
 
 /* Styling for the Contribute link */
