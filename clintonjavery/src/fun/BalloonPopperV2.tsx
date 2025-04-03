@@ -61,12 +61,29 @@ export default function BalloonPopGameV2() {
     setTargetColor(getRandomButtonColor());
   };
 
+  const maxBalloonLevel = 8; // You can change this number as needed
+  // check for game-over condition
+  if (balloons.length > maxBalloonLevel) {
+    return (
+      <div className={styles.pageContainer}>
+        <h1 className={styles.heading}>🎈 Game Over 🎈</h1>
+        <p>Final Score: {score}</p>
+        <p>Final Level: </p>
+        <button onClick={() => window.location.reload()} className={gameStyles.gameButton}>
+          Play Again
+        </button>
+      </div>
+    );
+  }
+
+
   return (
     <div className={styles.pageContainer}>
       <h1 className={styles.heading}>🎈 Balloon Pop</h1>
       <p>Score: {score}</p> <p>Level: </p>
       <button onClick={changeTarget} className={gameStyles.gameButton} style={{backgroundColor: targetColor}}>Change Target Color</button>
       <div style={{ marginTop: "20px" }}>
+        
         {balloons.map((color, index) => (
           <Balloon key={index} color={color} onClick={() => handlePop(color, index)} />
         ))}
