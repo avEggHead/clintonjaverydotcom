@@ -16,6 +16,7 @@ import TextAnalyzer from "./tools/TextAnalyzer";
 import Fun from "./pages/Fun";
 import BalloonPopGame from "./fun/BalloonPopper";
 import BalloonPopGameV2 from "./fun/BalloonPopperV2";
+import BunnyGame from "./fun/BunnyGame";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/fun/balloon-popper" element={<BalloonPopGame />} />
             <Route path="/fun/balloon-popperv2" element={<BalloonPopGameV2/>} />
+            <Route path="/fun/bunnygame" element={<BunnyGame/>}/>
           </Routes>
         </main>
         <Footer />

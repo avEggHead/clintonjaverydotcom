@@ -1,0 +1,54 @@
+/* BunnyGame.css */
+.game-container {
+    width: 600px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    background-color: #87ceeb;
+    border: 2px solid black;
+  }
+  
+  .bunny {
+    position: absolute;
+    left: 50px;
+    transition: bottom 0.1s ease-in-out;
+  }
+  
+  .jumping {
+    animation: jump 0.5s ease-in-out forwards;
+  }
+  
+  .ducking {
+    height: 20px;
+    width: 50px;
+  }
+  
+  .score {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    font-size: 20px;
+  }
+  
+  .game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: red;
+    font-size: 40px;
+  }
+  
+  @keyframes jump {
+    0% {
+      bottom: 200px;
+    }
+    50% {
+      bottom: 300px;
+    }
+    100% {
+      bottom: 200px;
+    }
+  }
+  
