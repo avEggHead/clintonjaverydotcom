@@ -8,6 +8,18 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "The paradoxical necessity",
+    title: "Two Mindsets of Engineering",
+    date: "April 22 2025",
+    preview: "The paradoxical necessity...",
+    content: `        Paradoxically, a software engineer must maintain two contradictory mindsets.  One, a serene comfort with not knowing.  The second, an intense need to understand.  Why are both of these mindsets necessary?
+	  First of all there is so much to know, and so much to learn.  In a weird way, the more you learn, the more you realize how much you don’t know (an inverted Dunning-Kruger effect).  This feeling can be discouraging and paralyzing for some; how can one make any progress in acquiring skills when the task seems so huge. You don’t know everything.  No one does.   Accepting this is the first step.  Being aware of this enables you to ask for help from your colleagues, and begin the research process.  If you don’t allow yourself this humble approach, the growth of your knowledge and skills will be stunted.
+	  On the other hand, when there is a job to be done, a problem to be solved, the engineer must be so uncomfortable with their own ignorance that they are pushed to dig deep and ask questions and read and research and be persistent until that moment when the light goes on, when everything clicks, and now they have the understanding.  The discomfort of ignorance has been, for a time, relieved.  They are able to finish the job at hand by applying the acquired understanding.
+	  At my first developer job I remember feeling very hesitant to ask questions and ask for help.  I’d spend a lot of time just trying to figure things out on my own.  I was missing half the mindset I needed, and without it, I was holding myself back.  My tech lead took my aside and said, “I respect that you’re figuring things out on your own, but there are lots of people here who can help you.  Challenge yourself on your own time.  At work, just spend a little bit of time figuring it out on your own, and then reach out to someone for help.”
+	  That experience helped me on the path to making these two mindsets part of my engineering approach.  These two mindsets will help any software engineer be more effective at their job.  Whenever you get a new work item it can feel overwhelming.  Realizing that is part of the process is helpful.  Follow that up with a relentless alleviation of your own ignorance, and you are in a great position to move those tasks from ‘in-progress’ to ‘done’.  This mindset is also applicable to a wide range of life situations.
+`,
+  },
+  {
     slug: "The dreaded on-call support rotation",
     title: "Three Concepts for Support",
     date: "April 17 2025",
