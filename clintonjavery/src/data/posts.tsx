@@ -8,6 +8,23 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "books are good",
+    title: "Books are Good",
+    date: "April 28 2025",
+    preview: "a simple poem to encourage reading instead of screening",
+    content: `              Books are good for your brain
+                Screens are bad
+
+              Books make you happy
+                And screens make you sad
+
+              Books open up horizons, regions unexplored
+                While screens keep you in your room
+                Afraid, alone, and bored
+              
+              (feel free to replace 'screens' with whatever problem device you want)`,
+  },
+  {
     slug: "The paradoxical necessity",
     title: "Two Mindsets of Engineering",
     date: "April 22 2025",
