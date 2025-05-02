@@ -61,9 +61,9 @@ const books: Book[] = [
   {
     title: "Things Fall Apart",
     author: "Chinua Achebe",
-    status: "reading",
+    status: "finished",
     date: "2025",
-    blurb: "So far an engaging story about an African tribesman and how he takes his place in his society.",
+    blurb: "A story about a man who's life is changed by forces beyond his control.  In many ways an unsympathetic character, in other ways highly relatable; a very human story.",
   },
   {
     title: "Childhood's End",

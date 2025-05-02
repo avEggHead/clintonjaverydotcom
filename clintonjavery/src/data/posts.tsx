@@ -8,6 +8,23 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "Security and obscurity",
+    title: "Security and obscurity",
+    date: "April 28 2025",
+    preview: "Hey that’s a nice microservice you’ve got there.  It’d be a shame if something bad were to happen to it.",
+    content: `        Hey that’s a nice microservice you’ve got there.  It’d be a shame if something bad were to happen to it. 
+      
+      I’ve seen this so often.  Teams come into sprint reviews talking about all the wonderful work they did remediating security flaws in applications, and finding and eliminating important code vulnerabilities.  Hooray, well done.  We all cheer, they pat themselves on the back, we pat [their]selves on the back, and everyone is happy.  But I’ll let you in on a deep dark suspicion I have.  I think it’s all baloney.
+      Do I mean that security is unimportant.  Absolutely not.  I think it’s critical.  Security should be a top concern of any IT organization.  So why do I say it’s baloney?  Here’s why.  It has to do with obscurity.  What exactly is being obscured?  The scan results that I’ve looked at, are very difficult to understand for one thing.  But if you spend some time analyzing it, you often come away thinking that yeah, technically, in some theoretical sense this is a security vulnerability, but sort of the same way that a human body is theoretically vulnerable to the vacuum of space.  It’s like, if we happen to ride a rocket into space, and then accidentally leave through an airlock without a spacesuit, yeah, we would explode.  But most of us are not going into space so it’ll be okay.  Sure, our application uses a third-party package that could cause a stack overflow, but this is a batch application with no incoming network connections, and only processes data from prevalidated sources, so…
+      The thing that is obscured is the relevance of a particular flaw to the application in question.
+      As developers we need to level up our security game and cultivate a deeper understanding of the actual security risks in the applications for which we are responsible.  Don’t just look at a scan result and say ok well we better “fix” that.  First make sure you really understand what the issue is, cut through the obscurity.  
+      Security analysis tools need to level up their game too.  Shouldn’t we be able to tell the tool some things about the application that it is scanning?  For instance, you’re scanning a batch application that runs on a server behind a firewall, or this is an API hosted in AKS on Azure, but it only accepts connections from API Manager.  And then on that basis run a scan and get results that are relevant to the type of app and the type of hosting.  There’s room for improvement on the tooling side to reduce obscurity.
+      Even better, what if the code analysis came with instructions for exploiting the vulnerability?  If this truly is a security flaw, you should be able to tell me how a bad actor might exploit it, and then I should be able to do the same thing.  If I can’t, maybe I don’t have the right picture of how everything is working, or maybe it’s not a vulnerability after all.  This is something I’ve never seen from a scan; instructions to prove vulnerability. 
+      Some people might respond with, yeah but I work in an industry where we deal with client’s sensitive information, or on devices that are life critical systems.  We have to play it safe.  I would say, yes you do have to play it safe, and the best way to do that is to actually dig deep and understand the real vulnerabilities for which you are at risk.  You especially can’t afford to be wasting time fixing non-issues.
+      Not getting security right has serious consequences.  If we waste time on the wrong vulnerabilities it’s bad.  Wasting time on irrelevant vulnerabilities not only drains resources but can also give us a false sense of security.
+`,
+  },
+  {
     slug: "books are good",
     title: "Books are Good",
     date: "April 28 2025",
