@@ -10,7 +10,7 @@ export const posts: Post[] = [
   {
     slug: "Security and obscurity",
     title: "Security and obscurity",
-    date: "April 28 2025",
+    date: "May 2 2025",
     preview: "Hey that’s a nice microservice you’ve got there.  It’d be a shame if something bad were to happen to it.",
     content: `        Hey that’s a nice microservice you’ve got there.  It’d be a shame if something bad were to happen to it. 
       
