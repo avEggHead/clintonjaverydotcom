@@ -10,6 +10,13 @@ type Book = {
 
 const books: Book[] = [
   {
+    title: "To Kill A Mockingbird",
+    author: "Harper Lee",
+    status: "finished",
+    date: "2025",
+    blurb: "A story that is at once tragic, harrowing, and hopeful.  Narrated by a young girl in the south in the 1930's you get what feels like a real description of a life, a small town, its people and its problems.  I can't even describe how well written this book is.",
+  },
+  {
     title: "Blackwater",
     author: "Jeremy Scahill",
     status: "reading",

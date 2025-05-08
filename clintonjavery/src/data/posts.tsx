@@ -8,11 +8,29 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "making things harder",
+    title: "Are your efforts to make things easier for developers counter productive?",
+    date: "May 8 2025",
+    preview: "By trying to make things easier, are we inadvertently making them harder?",
+    content: `Is there a rule that we can apply that would allow us to know when a process can be simplified and when it cannot be simplified, and when any efforts to simplify it, at best, will amount to a trade-off in effort, and at worst will result in a process that is worse than the original?
+
+This is a big question, and deserves some thought.  If you have this skill, you’ll avoid wasting time and making things worse.
+
+I’ll make my worry more concrete.  I’ve seen this in my work:  An IT organization wanted to make its deployments to the cloud easier for developers, and more controlled, from a governance perspective.  A bunch of effort was spent creating scripts to facilitate cloud deployments and management.  A great idea on paper, right?
+
+Here’s what happened, the documentation for using this scripts was less clear than the documentation available from the cloud provider for doing the exact same things manually that the scripts were supposed to be facilitating.  This led to a lot more hand holding required internally, whereas no hand holding would have been required if they had embraced the alternate approach of using the standard approaches to deploying and changing cloud resources.
+
+It also led to situations where a pipeline that had been working, all of the sudden stopped working, because it was dependent on a script in a repository that was modified.  This caused lots of confusion especially for newly onboarded team members who weren’t yet familiar with the cloud management script dependencies.
+
+Maybe it’s too hard to spot the potential overcomplications ahead of time when you think you’re going to simplify a process.  It also takes a certain frame of mind to admit that the thing that you created is actually hurting more than it’s helping.
+`,
+  },
+  {
     slug: "Security and obscurity",
     title: "Security and obscurity",
     date: "May 2 2025",
     preview: "Hey that’s a nice microservice you’ve got there.  It’d be a shame if something bad were to happen to it.",
-    content: `        Hey that’s a nice microservice you’ve got there.  It’d be a shame if something bad were to happen to it. 
+    content: `        Hey that’s a nice microservice you’ve got th  ere.  It’d be a shame if something bad were to happen to it. 
       
       I’ve seen this so often.  Teams come into sprint reviews talking about all the wonderful work they did remediating security flaws in applications, and finding and eliminating important code vulnerabilities.  Hooray, well done.  We all cheer, they pat themselves on the back, we pat [their]selves on the back, and everyone is happy.  But I’ll let you in on a deep dark suspicion I have.  I think it’s all baloney.
       Do I mean that security is unimportant.  Absolutely not.  I think it’s critical.  Security should be a top concern of any IT organization.  So why do I say it’s baloney?  Here’s why.  It has to do with obscurity.  What exactly is being obscured?  The scan results that I’ve looked at, are very difficult to understand for one thing.  But if you spend some time analyzing it, you often come away thinking that yeah, technically, in some theoretical sense this is a security vulnerability, but sort of the same way that a human body is theoretically vulnerable to the vacuum of space.  It’s like, if we happen to ride a rocket into space, and then accidentally leave through an airlock without a spacesuit, yeah, we would explode.  But most of us are not going into space so it’ll be okay.  Sure, our application uses a third-party package that could cause a stack overflow, but this is a batch application with no incoming network connections, and only processes data from prevalidated sources, so…
