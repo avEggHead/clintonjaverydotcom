@@ -8,6 +8,22 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "creating a package",
+    title: "To Package or Not To Package",
+    date: "May 21 2025",
+    preview: "Internally created packages are meant to simplify...",
+    content: `
+    Internally created packages are meant to simplify projects and aid in eliminating code duplication (reinventing wheels) across multiple projects. The package is supposed to encapsulate a bunch of code that would take a long time to reimplement in each project where that logic is required, so that’s a win. DRY, right? But there are a few difficulties my team has run into that I want to point out. One is framework dependencies. Another is configuration. And a third issue is troubleshooting potential problems.
+
+    From time to time, the package that encapsulates that logic simply isn’t compatible with the project that needs it. So, my team has had to look at the package source code in the repository and then reimplement that code by hand in the target project. A little bit time-consuming, so this should be kept in mind for a large organization. When we think we’re saving teams time, just be mindful of the fact that a lot of teams are managing different repos, some of them with aging codebases, and the new shiny package that will do the thing may not be compatible with every project across the organization.
+
+    Another issue has been simply configuring the thing to work in the sfirst place. I’ve seen these configurations get very complex—like you’re sending dozens of lines of JSON objects from an appsettings file into the package. This can be a blocker if the documentation isn’t thorough enough, or if the type of application that the package targets is one type, like a cloud-hosted app, whereas the app in question is on-prem and you’re trying to access a Key Vault. Things get tricky, and packages encapsulating logic don’t always simplify that in an elegant manner.
+
+    The third issue is closely connected to the previous one. If you configure something incorrectly, or if you’re just running into any kind of problems, the error handling doesn’t always give you a clear understanding of the source of the problem. You end up having to go back and review the source code of the package you imported and come up with hypotheses for where in that code it might be failing. It’s all very time-consuming and, again, sort of goes against the point of creating the package in the first place.
+
+    So, when creating packages that are meant to simplify, focus on good logging and good error handling. Focus on simplicity in the interface. If you are asking the consuming client to pass in a dozen configuration items, you might be doing something wrong. Consider compatibility issues that might arise with projects that use different frameworks (or languages). And lastly, just be sure to thoroughly and simply document how to consume this package. Putting extra effort into these areas will ensure that the package you create will alleviate your clients' headaches rather than adding to them.`,
+  },
+  {
     slug: "making things harder",
     title: "Are your efforts to make things easier for developers counter productive?",
     date: "May 8 2025",
