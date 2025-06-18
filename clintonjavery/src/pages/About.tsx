@@ -34,7 +34,7 @@ export default function About() {
         </a>
 
         <a 
-          href="https://drive.google.com/file/d/1cGPmV4be7f4hyyhZen_aNZjMIkKlA82Q/view?usp=sharing"
+          href="https://drive.google.com/file/d/1k1OKc1QGhM4KIJ770nHHB2OXDnMXs19-/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.buttonLink}
