@@ -171,9 +171,15 @@
 
 .toolsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1.5rem;
   margin-top: 2rem;
+}
+
+@media (min-width: 600px) {
+  .toolsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .toolCard {
@@ -268,3 +274,4 @@
   cursor: default;
   opacity: 0.6;
 }
+

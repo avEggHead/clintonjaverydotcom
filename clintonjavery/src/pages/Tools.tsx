@@ -26,6 +26,13 @@ export default function Tools() {
           </Link>
         </div>
 
+        <div className={styles.toolCard}>
+          <h3>📝 Effort Estimator</h3>
+          <p>Help yourself consider the effort of a work item.</p>
+          <Link to="/tools/effortestimator" className={styles.toolButton}>
+            Try it →
+          </Link>
+        </div>
         {/* More tools coming soon */}
       </div>
     </div>
