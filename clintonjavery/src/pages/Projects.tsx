@@ -9,6 +9,23 @@ export default function Projects() {
       <div style={{ display: "flex", flexDirection: "column", gap: "30px" }} >
         <div>
           <h2>
+            <a href="https://coinfunarcade.com" target="_blank" rel="noopener noreferrer" style={{color: "blue"}}>
+              CoinFunArcade.com
+            </a>
+          </h2>
+          <p style={{ paddingRight: "2rem" }}>
+            An online video arcade in your browser.  Test your reflexes, build your brain, just have fun.  
+            Do you love Ads?  Do you love having more accounts and passwords to remember?  Do you like worrying that the game site 
+            your kids like might not be safe for them?
+            No? 
+            Well CoinFunArcade.com is the place. No ads, no accounts, no social media integration, no passwords, no tracking.
+            Just pay fifty cents and play for thirty days with your token.
+          </p>
+          <p><strong>Tech Stack:</strong> Vite React.  TypeScript, HTML, CSS, JavaScript.  Cloudflare Pages, Cloudflare Worker, Cloudflare D1, Stripe.</p>
+        </div>
+
+        <div>
+          <h2>
             <a href="https://www.theorhetorical.com" target="_blank" rel="noopener noreferrer" style={{color: "blue"}}>
               Theorhetorical.com
             </a>

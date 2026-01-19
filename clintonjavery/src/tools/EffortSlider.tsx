@@ -29,7 +29,7 @@ export default function EffortSlider() {
   }, {} as EffortValues);
 
   const [values, setValues] = useState<EffortValues>(initialState);
-  const MAX_SLIDER = 8;
+  const MAX_SLIDER = 5;
 
   // 1. Normalize all sliders to 0–1
   const normalizedEffort = Object.values(values).reduce((sum, val) => {
