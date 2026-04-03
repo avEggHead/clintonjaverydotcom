@@ -33,6 +33,14 @@ export default function Tools() {
             Try it →
           </Link>
         </div>
+
+        <div className={styles.toolCard}>
+          <h3>🔄️ Unit Converter</h3>
+          <p>Convert from Imperial to 'merican units'.</p>
+          <Link to="/tools/unitconverter" className={styles.toolButton}>
+            Try it →
+          </Link>
+        </div>
         {/* More tools coming soon */}
       </div>
     </div>

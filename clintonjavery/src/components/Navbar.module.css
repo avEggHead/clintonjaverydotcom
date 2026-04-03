@@ -1,5 +1,6 @@
 .navbarWrapper {
-  background-color: #297f39;
+  /* Old: background-color: #297f39; */
+  background: linear-gradient(to right, #00a86b, #23270f);
   width: 100%;
 }
 
@@ -12,7 +13,7 @@
   margin: 0 auto;
 }
 .navLink:hover {
-  color: #0a7cff;
+  color: #80d0b6; /* darker green – stays visible on yellow parts */
 }
 .navLinks {
   display: flex;
@@ -26,20 +27,15 @@
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease, color 0.3s ease;
-  transition: font-weight initial ease, fo 0.3s ease;
+
+  transition: font-weight initial ease, font-weight 0.3s ease;
 }
 
 /* Styling for the Contribute link */
 .contributeLink {
-  border: 1px solid #ffffff;  /* White border */
-  background-color: #055513;  
-  border-radius: px;
-  padding: 3px 12px;
-  font-weight: bold;
-  color: white;
-  display: inline-flex;
-  transition: color 0.3s ease, color 0.3s ease;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  background: linear-gradient(to right, #00a86b, #0f2723);
+  border: 1px solid #ffffff;
+  color: #ffffff;
 }
 
 .contributeLink:hover {
@@ -95,3 +91,4 @@ a {
     display: flex;
   }
 }
+

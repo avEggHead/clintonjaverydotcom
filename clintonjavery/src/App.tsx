@@ -17,6 +17,7 @@ import Fun from "./pages/Fun";
 import BalloonPopGame from "./fun/BalloonPopper";
 import BalloonPopGameV2 from "./fun/BalloonPopperV2";
 import EffortSlider from "./tools/EffortSlider";
+import UnitConverter from "./tools/UnitConverter";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             <Route path="/tools/timezone" element={<TimeZoneConverter />} />  // placeholder
             <Route path="/tools/textanalyzer" element={<TextAnalyzer/>} />
             <Route path="/tools/effortestimator" element={<EffortSlider/>} />
+            <Route path="/tools/unitconverter" element={<UnitConverter/>} />
             <Route path="/support" element={<Contribute />} />
             <Route path="/about" element={<About />} />
             <Route path="/fun/balloon-popper" element={<BalloonPopGame />} />
