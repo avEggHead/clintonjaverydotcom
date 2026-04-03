@@ -1,4 +1,4 @@
-import { useState } from "react";
+  import { useState } from "react";
 import styles from "../styles/layout.module.css"; // or your custom tools.module.css
 
 export default function TextAnalyzer() {
@@ -35,3 +35,4 @@ export default function TextAnalyzer() {
     </div>
   );
 }
+

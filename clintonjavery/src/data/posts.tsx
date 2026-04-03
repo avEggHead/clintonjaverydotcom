@@ -8,10 +8,87 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "Run a model locally to save tons of money",
+    title: "Want to experiment with a locally hosted LLM?",
+    date: "April 2, 2026",
+    preview: "This time the adventure is into hosting your own large language model.",
+    content : `     Certified Artisanal Brainthoughts™  folks.  Here’s the new installment.  This time the adventure is into hosting your own large language model.  Is there some irony here?  Yes, I should acknowledge that at the outset.  After all, I’m going out of my way to proclaim that I’m a stalwart proponent of artisanal brainthinking (I’ll have some thoughts at the end about the use of generative ai technologies later, and probably sprinkled throughout).  None the less, even us would-be Luddites recognize the utility of a robot assistant every now and then.  If you find yourself wanting to reap the benefits of LLM utilization, but aren’t too fond of contributing to the ever increasing power of centralized computing organizations, or are worried about spending an arm and a leg on API costs, or are worried that tightly coupling your workload to what could be a highly subsidized technology with what seems like an unsustainable pricing model, or maybe you’re just the do-it-yourself type, then maybe a locally hosted LLM is the thing for you.  I’ll be taking you through the step by step process I used for my own setup.  
+
+    So let’s get right into it…
+
+    Here is a high level view of my setup: I have a bunch of devices on a LAN that can access a chat interface being served by a MAC mini running Ollama and Open WebUI.  Also side note, I’ve been quite impressed with the Mac Mini’s ability to run LLMs locally, even GPT-OSS works pretty well on this thing.
+
+	You might be wondering, what does it mean to “host” a large language model?  Well if you’re reading this, you’re probably somewhat technically minded, if not I apologize, but here’s how I understand it.  Think of an LLM like a function or method in programming terms.  When you invoke a method, you can send in data, said method processes the data then returns data.  Your basic input output paradigm. LLMs behave very similarly, you send in data in the form of a prompt, and you get back data in the form of text.  Hosting an LLM enables you to do this by providing an interface enabling this input and output.
+
+	In my case the hosting is provided by an application called Ollama.  It provides the interface between the prompts and the LLM’s text generated response.  It has some cool features that allow you to download different models and then pick the one that you want to interact with.  It’s kind of a nice way to test various models, you can prompt each one with the same input and measure the response time and judge the response quality.
+
+	Once you have the hosting figured out, then you need to decide how to interact with the LLM.  Are you just going to send API requests to the Ollama endpoint?  This is actually an option, and if you want to do any sort of (dare I utter the words…?) agentic workflow or programmable use of LLMs this is what you’ll do.  But for the standard chat use case, a clean front end web interface is preferable.  I think most people are pretty familiar with the chat bot interface.  Fortunately for local hosting there’s a really clean solution called Open WebUI which justifiably claims to be The self hosted AI interface.
+
+	Here are the steps I took to set this thing up.  Remember these are the commands on a Mac Terminal.
+
+1.  Download Ollama.  You can do this by going to the website https://ollama.com/.  The documentation there is very simple and easy, I wont reproduce it here.
+2.  Run Ollama.
+3.  Download a model.  You can search the ollama site for which model you want.
+		
+	    ollama pull gpt-oss
+ 
+4.  Run the model with local port exposed to the LAN (this doesn’t matter for the chat interface but if you want to hit the LLM via code you’ll need to do this)
+
+              OLLAMA_HOST=0.0.0.0 ollama serve
+
+5.  Test chatting with the model.
+6.  Open a new Terminal tab
+7.  Take a look at Open WebUI here https://openwebui.com/ there’s a link to a github repo with the installation instructions
+		
+          pip install open-webui	
+
+8.  Serve Open WebUI to the LAN
+
+	open-webui serve –host 0.0.0.0 –port 3000
+
+9.  Test using LAN address (eg http://<your local IP address>:3000)  This will take you to a clean chat ui very similar to what you are used to if you use ChatGPT.
+
+    And you’re done.
+
+    One benefit of running this thing locally is whatever you figure out to do with it, it ain’t going away.  An LLM on your machine, lots of sovereignty.  
+
+    Also, here’s some math (or ‘maths’ as our British friends say).
+
+    According to apple’s documentation (https://support.apple.com/en-us/121555?) the Mac Mini 2024 has a maximum continuous power of 155W.  So let’s make some very conservative assumptions.  Let’s say I was doing inference for 8 hours a day, and assume further that it pulls the max wattage when doing inference.  
+
+        (155 W * 8hr) *  (1 kW/ 1000 W) = .155kW * 8 HR = 1.24 kWh
+
+    Out here in my neck of the woods electricity is about $0.13 per kWh
+
+        1.24 kWh * $0.13 / kWh = $0.1612.
+
+    It looks like I could run inference for full 8 hour workday for less than a quarter.  That aint bad.  
+
+    Let’s take it one step further and assume my model outputs 15 tokens per sec (again a super conservative estimate, it could produce 20 - 30 tokens, but let’s take worst case).  
+
+        15 tokens/sec * 60 sec / min * 60 min / hour = 54,000 tokens / hour
+
+        54,000 tokens / hour * 8 hours = 432,000 tokens / $.1612 = 2,679,900 tokens per dollar (rounding) 
+
+    Which is anywhere between 15 and 100 times cheaper than paying the API token fees for frontier models from OpenAI.  So…. Not bad.  And this is a pretty conservative estimate.  I assumed full bore on the wattage pull which, is worst case scenario, but realistically it could be that even running full tilt the model only pulls half that wattage, and maybe it doubles the token output, so it wouldn’t be too extreme to think that the local hosting is 100X cheaper than the frontier.  Of course the question then becomes is the frontier model worth paying 100X more than the do it yourself approach?  The answer here is the classic software engineer answer, “it depends.”
+
+    One takeaway here is that you can do a lot of experimentation with a local model without spending huge amounts of money.  If you are trying to figure out how to incorporate an LLM into a workflow, doing so without having to pay as you iterate makes things easier, and if you find that you can do something useful locally great, and if you find the situations where you have to pay 100X the price to get a valuable result (not just a token, but a useful token) then a least you’ve done the research to know when that is required.
+
+    Also, given that the companies running these frontier models are not overall profitable, OpenAI has so far spent in excess of its revenue by billions of dollars, and the same is true for Anthropic¹, it might be wise to anticipate that in the long time prices are likely to go up not down.  I think the current prices are likely reflecting the companies’ need to stay competitive and grow, in other words they are taking a loss to get customers to use their product in the short and medium term, this is a common practice for emerging markets ( analogy being uber, anyone else remember cheap Uber rides many years ago?  Or a closer anecdote there was a new gas station that was built near me, for the first few months of its operation it was 10 cents cheaper than everywhere else, now it’s at parity with everyone other gas station).  Given such uncertainty decoupling from those products, or at least maintaining optionality to do so, would position organizations for successful integration of useful AI products irrespective of the industry outcomes.
+
+
+    ⸺⸺⸺⸺⸺⸺
+¹  https://openai.com/api/pricing/
+²  Check out page 4 of this legal filing from Anthropic’s CFO Krishna Rao. 
+https://storage.courtlistener.com/recap/gov.uscourts.cand.465515/gov.uscourts.cand.465515.6.5.pdf Anthropic has made approximately $5 billion dollars since entering the commercial market.  They’ve spent $10 billion on inference and training.
+    
+`
+  },
+  {
     slug: "triple dt software engineering framework",
     title: "Triple DT Software Engineering Framework",
     date: "February 9, 2026",
-    preview: "Ready to have your thoughts lead...?",
+    preview: "Ready to have your thoughts led...?",
     content : `First in my series Certified Artisanal Brain Thoughts.
 
       Dear friends, allow me to present the Triple DT software engineering framework (patent pending¹).  Ready for some thought leadership?  This ain’t just leadership, no this is thought leadership, I’m actually going to attempt to lead your thoughts.  This isn’t manipulative, it’s more like just giving counsel or advice, and…. Wait… Now that I think of it, that’s all that thought leadership is!  It’s just giving advice, it’s just like regular leadership except someone stuck the word ‘thought’ at the front.  To do what?  Make it sound more important?!  Oh well, I need to thought lead myself back to what I was talking about.  
