@@ -10,49 +10,51 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: ⬇️ Checkout code
-      uses: actions/checkout@v2
+      - name: ⬇️ Checkout code
+        uses: actions/checkout@v2
 
-    - name: 🧱 Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
+      - name: 🧱 Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-    - name: 📦 Install dependencies
-      working-directory: ./clintonjavery
-      run: npm install
+      - name: 📦 Install dependencies
+        working-directory: ./clintonjavery
+        run: npm install
 
-    - name: 🛠 Build the site
-      working-directory: ./clintonjavery
-      run: npm run build
+      - name: 🛠 Build the site
+        working-directory: ./clintonjavery
+        run: npm run build
 
-    - name: ⚙️ Install Azure CLI
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y azure-cli
+      - name: ⚙️ Install Azure CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y azure-cli
 
-    - name: 🔐 Azure Login with Service Principal
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: 🔐 Azure Login with Service Principal
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: ❌ Delete existing blobs
-      run: |
-        az storage blob delete-batch --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }} \
-                                     --source '$web'
+      - name: ❌ Delete existing blobs
+        run: |
+          az storage blob delete-batch --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }} \
+                                       --source '$web' \
+                                       --auth-mode login
 
-    - name: 🚀 Upload new build
-      run: |
-        az storage blob upload-batch --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }} \
-                                     --destination '$web' \
-                                     --source './clintonjavery/dist' \
-                                     --overwrite
+      - name: 🚀 Upload new build
+        run: |
+          az storage blob upload-batch --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }} \
+                                       --destination '$web' \
+                                       --source './clintonjavery/dist' \
+                                       --overwrite
+                                       --auth-mode login
 
-    - name: 🚽 Purge CDN Cache (backgrounded)
-      run: |
-        echo "Starting CDN purge in background..."
-        nohup az cdn endpoint purge \
-            --resource-group clintonaverydotcom \
-            --profile-name clintonavery-cdn \
-            --name clintonavery \
-            --content-paths '/*' > /dev/null 2>&1 &
+      - name: 🚽 Purge CDN Cache (backgrounded)
+        run: |
+          echo "Starting CDN purge in background..."
+          nohup az cdn endpoint purge \
+              --resource-group clintonaverydotcom \
+              --profile-name clintonavery-cdn \
+              --name clintonavery \
+              --content-paths '/*' > /dev/null 2>&1 &
