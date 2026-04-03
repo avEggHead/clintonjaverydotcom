@@ -47,7 +47,7 @@ jobs:
           az storage blob upload-batch --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }} \
                                        --destination '$web' \
                                        --source './clintonjavery/dist' \
-                                       --overwrite
+                                       --overwrite \
                                        --auth-mode login
 
       - name: 🚽 Purge CDN Cache (backgrounded)
