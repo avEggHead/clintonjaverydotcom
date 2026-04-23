@@ -8,6 +8,42 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "Two Powershell Commands of Domain Transfer",
+    title: "Two Powershell Commands of Domain Transfer",
+    date: "April 23, 2026",
+    preview: "Moving a domain from Azure to Cloudflare?  This might come in handy",
+    content : `So this might be an embarrassing admission but I’ve only recently (within the last year or so) become aware of how good Cloudflare is as a cloud hosting provider.  Especially for folks like me who like creating small scale fun projects and just want to get things up and running.  Part of the blame isn’t on me, professionally my focus has been on cloud development within an enterprise setting, and that has meant Azure and AWS of course, so that’s what I’ve focused on learning.
+	But Cloudflare!  Man great setup, I almost don’t want to tell you about it because it’s so good I want it all to myself.  I’ve put a couple projects up there, if you’re curious you can check out the projects section of this site and you’ll see a couple of them.  It makes it so easy to get something up and running.  Even with a custom domain and https support.  And that’s the thing that I wanted to talk about, because on Azure, you can do that stuff, of course you can do pretty much anything on Azure but man it’s way harder, and recently I got hit with a forced upgrade to Azure Front Door when their CDN got deprecated and so I went from paying less than $2 a month for my website to nearly $50.  It was a bit insane.  
+	When I saw that I realized I have to move and find an alternative hosting solution.  And cloudflare, while it doesn’t give you free domains of course, it does set you up with a decent free tier for hosting (and even for some backend stuff).
+	But I wanted to talk specifically about moving domains out of Azure into Cloudflare.  Maybe this will be useful to you.  I’ve always kind of wondered how this works, because you think, wow what if I bought some url like amazinglysellableurl.com, and then I auctioned it off for millions of dollars, wouldn’t that be cool?  But how would I actually transfer it to another owner, well this is how.  It’s actually kind of hard with Azure (believe it or not).
+	So one thing that I learned with buying domains through the Azure portal, is that you aren’t actually buying them from Azure.  Well you are, but Azure is more like a reseller, GoDaddy is the actual registrar for the domain (at least it was in my case).  I don’t know if this is exactly why Azure doesn’t let you change things like CNAME or DNS records in your domain through the portal UI.  If you have experience with AWS Route 53 you’ll find it does let you do that. I’m guessing that’s because AWS is the actual registrar not just a go between.
+	If you do need to transfer the domain to Cloudflare from Azure, it is possible just tricky.  You’ll want to start from the Cloudflare dashboard.  Go into your account and follow the onboard a custom domain workflow.  Eventually it will ask you to modify the DNS servers with your existing registrar with Cloudflare’s DNS servers.  Here’s where the tricky part comes in, you can’t do it through the Azure portal UI you have to hit Azure’s back-end API, and I’ll provide you with the powershell command here, and of course it’s easiest to just run it directly from Azure’s CloudShell (so in a way it is accessible through the portal UI, just not the point and click UI)
+
+Powershell command through azure portal
+
+Invoke-AzRestMethod -Path "/subscriptions/<subscription id>/resourceGroups
+/<resource group>/providers/Microsoft.DomainRegistration/domains/<domain name>?api-version=2021-02-01" 
+      -Method PATCH   -Payload '{
+        "properties": {
+          "nameServers": [
+            "<name servers provided by Cloudflare>",
+            "<name servers provided by Cloudflare>"
+          ]
+        }
+      }’
+
+  Once that gives you a 200 response the Cloudflare onboard custom domain workflow will let you go through a couple more steps and will prompt you for entering an authorization or EPP code.  This is the code that actually authorizes the transfer to another registrar, the real transfer of ownership.  And that’s the other little trick.  You also need to hit the Azure API to get that code as it’s not available through the pointy clicky UI.  And here’s that little nugget.
+
+    Invoke-AzRestMethod 
+      -Path "/subscriptions/<subscription id>/resourceGroups/<resource group>
+      /providers/Microsoft.DomainRegistration/domains/<domain name>/transferout?api-version=2021-02-01" 
+      -Method PUT
+
+  Boom.  Done.  All you have to do is wait 7 days or so and you’ll be good.  You’ll see all the appropriate green checks in Cloudflare. Oh by the way, you’ll probably get an email from Azure saying “hey we received a request to transfer this domain.” You actual don’t have to do anything with that email, it’s kind of weird, it’s one of those confirm by not responding emails which struck me as odd.  So if you want to cancel that transfer request you respond saying so, otherwise it will eventually just transfer over.
+  This week was a bit of low level highly specific technical stuff but hopefully it’s helpful to someone out there. Even if that some is just a future version of me.  Anyway thanks for tuning in to this installment of Certified Artisanal Brainthoughts™.  I should say that I did use a frontier model to help me figure out how to hit the backend API for these two calls, the auth generation and the name server change.  But all the writing for the articles in this series is done completely by me for good of for ill.  As I’ve said before, even us would be Luddites (especially the software engineering types) know that an LLM can come in handy from time to time.
+  `
+  },
+  {
     slug: "Run a model locally to save tons of money",
     title: "Want to experiment with a locally hosted LLM?",
     date: "April 2, 2026",
