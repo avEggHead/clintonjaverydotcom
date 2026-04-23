@@ -8,7 +8,7 @@ export type Post = {
 
 export const posts: Post[] = [
   {
-    slug: "Two Powershell Commands of Domain Transfer",
+    slug: "TwoPowershellCommandsofDomainTransfer",
     title: "Two Powershell Commands of Domain Transfer",
     date: "April 23, 2026",
     preview: "Moving a domain from Azure to Cloudflare?  This might come in handy",
