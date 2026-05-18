@@ -8,6 +8,24 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "ApertusOpenSourceLLM",
+    title: "A Swiss AI Initiave Effort:  Apertus",
+    date: "May 18, 2026",
+    preview: "Ready to try out an LLM that respects copyrighted material?",
+    content : ` 
+      The Swiss have given us many great things, the Geneva Convention affirming human rights, the Swiss Army Knife affirming the human right to have awesome tools, and they’ve done it again giving us a fully open source large language model.  It’s called Apertus.  
+	The Swiss AI Initiative, according to the Apertus.AI website, is a national research effort aimed at producing trustworthy AI systems for the benefit of all society.  Towards that end Apertus, the model they produced, is not only fully open source, but also in compliance with EU copyright laws.  Meaning that its training data set doesn’t contain copyrighted material.  This addresses one of the prominent criticisms of large language models (though perhaps not the most important criticism). 
+	I’ve tested this model out with my development workflow (dev machine with VS Code + Continue.dev -> Mac Mini running Ollama with various LLMs as coding assistants).  It’s not ready for prime time yet in my opinion, though I have used it to do some useful things (Unity game scripting assistance and React Web Site maintenance).  As a chatbot (ie a search engine replacement) it’s pretty decent and it performs well in English and Arabic (I’m not in a position to really test out any other languages).  
+	The important thing about the model is what it shows is possible, namely you can train a good LLM using only data that is truly in the public domain.  This is a big deal and hopefully paves the way for more activity in this direction.  Like I said before this doesn’t necessarily address the biggest problems with the post November 2022 AI revolution, but it’s a piece of it.
+	Check it out and let me know what you think.  
+
+https://apertvs.ai/pages/get-started/
+GGUF from Hugging Face
+https://huggingface.co/bartowski/swiss-ai_Apertus-8B-Instruct-2509-GGUF
+
+  `
+  },
+  {
     slug: "TwoPowershellCommandsofDomainTransfer",
     title: "Two Powershell Commands of Domain Transfer",
     date: "April 23, 2026",
