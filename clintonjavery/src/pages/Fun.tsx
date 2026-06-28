@@ -1,5 +1,6 @@
 import styles from "../styles/layout.module.css"
 import { Link } from "react-router-dom";
+import WordScramble from "../fun/WordScramble";
 
 export default function Fun() {
     return (
@@ -26,15 +27,12 @@ export default function Fun() {
             </Link>
           </div>
 
-          {/* <div className={styles.toolCard}>
+          <div className={styles.toolCard}>
             <h3>🧩 Word Scramble</h3>
             <p>Unscramble the letters before time runs out.</p>
-            <Link to="/fun/scramble" className={styles.toolButton}>
-              Try it →
-            </Link>
-          </div> */}
+            <WordScramble />
+          </div>
         </div>
       </div>
     );
   }
-  
