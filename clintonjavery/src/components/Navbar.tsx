@@ -17,6 +17,7 @@ export default function Navbar() {
 
         <div className={`${styles.navLinks} ${isOpen ? styles.open : ""}`}>
           <a href="/projects" className={styles.navLink}>Projects</a>
+          <a href="/comics" className={styles.navLink}>Comics</a>
           <a href="/writing" className={styles.navLink}>Writing</a>
           {/* <a href="/reading" className={styles.navLink}>Reading</a> */}
           <a href="/gallery" className={styles.navLink}>Gallery</a>

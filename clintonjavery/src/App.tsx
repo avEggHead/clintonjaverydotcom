@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import styles from "./styles/layout.module.css";
 import Writing from "./pages/Writing";
+import Comics from "./pages/Comics";
 import Contribute from "./pages/Contribute";
 import Tools from "./pages/Tools";
 import TimeZoneConverter from "./tools/TimeZoneConverter";
@@ -31,6 +32,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/comics" element={<Comics />}/>
             <Route path="/writing" element={<Writing />}/>
             <Route path="/writing/:slug" element={<Post />} />
             <Route path="/reading" element={<Reading />} />
