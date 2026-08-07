@@ -1,57 +1,41 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Projects from "./pages/Projects";
-import Post from "./pages/Post";
-import Reading from "./pages/Reading";
-import Gallery from "./pages/Gallery";
-import About from "./pages/About";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import styles from "./styles/layout.module.css";
-import Writing from "./pages/Writing";
-import Comics from "./pages/Comics";
-import Contribute from "./pages/Contribute";
-import Tools from "./pages/Tools";
-import TimeZoneConverter from "./tools/TimeZoneConverter";
-import TextAnalyzer from "./tools/TextAnalyzer";
-import Fun from "./pages/Fun";
-import BalloonPopGame from "./fun/BalloonPopper";
-import BalloonPopGameV2 from "./fun/BalloonPopperV2";
-import EffortSlider from "./tools/EffortSlider";
-import UnitConverter from "./tools/UnitConverter";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import TopNav from './components/TopNav';
+import SiteFooter from './components/SiteFooter';
+import SkipLink from './components/SkipLink';
+import LandingPlaceholder from './pages/LandingPlaceholder';
+import FeedPlaceholder from './pages/FeedPlaceholder';
+import PostPlaceholder from './pages/PostPlaceholder';
+import ProjectsPlaceholder from './pages/ProjectsPlaceholder';
+import ProjectShowPlaceholder from './pages/ProjectShowPlaceholder';
+
+// Route shell (ARCHITECTURE-SPINE AD-5 / AC1). Fixed routes: `/`, `/p`,
+// `/projects`, `/projects/:slug`; dynamic `/p/:slug` is content-derived (the
+// component looks the slug up in the content-index — no hand-registered route).
+// All in-app nav uses RR <Link>/<NavLink> (FR-14 / AC2). Tailwind v4 + @theme
+// tokens only (AD-6) — no CSS Modules, no inline hex.
+//
+// TopNav renders its own <header> (the sticky + landmark element). Do NOT wrap
+// it in another <header> — a wrapper exactly nav-height makes `sticky top-0`
+// scroll away once you pass that height (the containing block is too short).
 
 function App() {
   return (
-    <Router>
-      {/* ✅ Full-width background */}
-      <Navbar />
-
-      {/* ✅ Constrained content container */}
-      <div className={styles.appContainer}>
-        <main className={styles.mainContent}>
+    <BrowserRouter>
+      <div className="flex min-h-screen flex-col">
+        <SkipLink />
+        <TopNav />
+        <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/comics" element={<Comics />}/>
-            <Route path="/writing" element={<Writing />}/>
-            <Route path="/writing/:slug" element={<Post />} />
-            <Route path="/reading" element={<Reading />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/fun" element={<Fun />} />
-            <Route path="/tools" element={<Tools />} />
-            <Route path="/tools/timezone" element={<TimeZoneConverter />} />  // placeholder
-            <Route path="/tools/textanalyzer" element={<TextAnalyzer/>} />
-            <Route path="/tools/effortestimator" element={<EffortSlider/>} />
-            <Route path="/tools/unitconverter" element={<UnitConverter/>} />
-            <Route path="/support" element={<Contribute />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/fun/balloon-popper" element={<BalloonPopGame />} />
-            <Route path="/fun/balloon-popperv2" element={<BalloonPopGameV2/>} />
+            <Route path="/" element={<LandingPlaceholder />} />
+            <Route path="/p" element={<FeedPlaceholder />} />
+            <Route path="/p/:slug" element={<PostPlaceholder />} />
+            <Route path="/projects" element={<ProjectsPlaceholder />} />
+            <Route path="/projects/:slug" element={<ProjectShowPlaceholder />} />
           </Routes>
         </main>
-        <Footer />
+        <SiteFooter />
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 
