@@ -2,6 +2,8 @@ import { Suspense, lazy, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { posts } from '../content';
 import { findPost, formatPostDate, stripRetrySrc } from './postPage-utils';
+import { buildHeadMeta } from '../site/head-meta';
+import { useHead } from '../head/useHead';
 
 // Story 1.4 — the real per-type Post page at /p/:slug (replaces 1.3's
 // PostPlaceholder). Essay → compiled MDX body in the prose-max reading column;
@@ -10,6 +12,11 @@ import { findPost, formatPostDate, stripRetrySrc } from './postPage-utils';
 // AD-1: consumes only the emitted content-index (`../content`); never globs
 // `content/` directly. Tailwind v4 + @theme tokens only — no CSS Modules, no
 // inline hex (AD-6).
+//
+// Story 1.6 — per-Post document <head> (AC1/AC2/AC3): useHead applies a
+// buildHeadMeta({kind:'post', post}) so <title>/og:*/twitter:*/canonical
+// reflect THIS post, updated on client-side route change. The not-found path
+// emits {kind:'not-found'} (noindex) so missing slugs stay out of the index.
 
 /** Essay skeleton — shown for the one microtask the eager body importer suspends. */
 function EssaySkeleton() {
@@ -173,6 +180,14 @@ function ComicPostView({
 export default function PostPage() {
   const { slug } = useParams();
   const post = findPost(posts, slug);
+
+  // Story 1.6 — per-route <head>. Unconditional (hooks rule): a missing post
+  // emits the not-found head (noindex); a found post emits its own metadata.
+  useHead(
+    post
+      ? buildHeadMeta({ kind: 'post', post })
+      : buildHeadMeta({ kind: 'not-found' }),
+  );
 
   if (!post) return <NotFound />;
 

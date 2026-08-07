@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom';
+import { buildHeadMeta } from '../site/head-meta';
+import { useHead } from '../head/useHead';
 
 // `/` — minimal placeholder linking to `/p` (AC6). The full Landing is Epic 3.
+// Story 1.6 — site identity <head> (FR-11): the home route owns the canonical
+// site title/description/og:image/og:url = https://www.clintonavery.com.
 export default function LandingPlaceholder() {
+  useHead(buildHeadMeta({ kind: 'home' }));
+
   return (
     <div className="mx-auto w-full max-w-[1100px] px-4 py-16">
       <p className="font-mono text-xs uppercase tracking-[0.14em] text-on-surface-variant eyebrow">

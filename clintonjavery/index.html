@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/public/images/favicon.png" />
+    <!-- Favicon (Story 1.6 fix: Vite serves public/ at root → /images/, not /public/images/) -->
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
 
     <!-- Viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,23 +18,28 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
     />
 
-    <!-- Title -->
-    <title>Clinton Avery – Software Engineer & Creator</title>
-
-    <!-- Meta Description -->
+    <!-- Site identity (Story 1.6, FR-11): the single source of truth for the
+         no-JS view. Runtime per-route <head> is owned by src/site/head-meta.ts +
+         src/head/useHead.ts (client); these static tags are the SPA-shell fallback
+         for non-JS social scrapers and the pre-JS first paint. Canonical identity
+         confirmed with Clint 2026-08-07: https://www.clintonavery.com / Clinton J Avery. -->
+    <title>Clinton J Avery – Software Engineer & Creator</title>
     <meta
       name="description"
-      content="The personal website of Clinton Avery – software engineer, creative thinker, and homesteader. Explore projects, writing, artwork, and more."
+      content="The personal website of Clinton J Avery — software engineer, creator, writer, and cartoonist. Essays, gag-a-day comics, and projects."
     />
+    <meta name="author" content="Clinton J Avery" />
 
     <!-- Open Graph / Social Sharing -->
-    <meta property="og:title" content="Clinton Avery – Software Engineer & Creator" />
-    <meta property="og:description" content="Explore projects, essays, artwork, and thoughts from Clinton Avery." />
-    <meta property="og:image" content="/social-preview.png" />
-    <meta property="og:url" content="https://clintonavery.dev" />
+    <meta property="og:title" content="Clinton J Avery – Software Engineer & Creator" />
+    <meta property="og:description" content="The personal website of Clinton J Avery — software engineer, creator, writer, and cartoonist. Essays, gag-a-day comics, and projects." />
+    <meta property="og:image" content="https://www.clintonavery.com/assets/bg-space.jpg" />
+    <meta property="og:url" content="https://www.clintonavery.com" />
+    <meta property="og:site_name" content="Clinton J Avery" />
+    <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-
-    <!-- You could add Google Fonts, analytics, or theme color here if needed -->
+    <meta name="twitter:title" content="Clinton J Avery – Software Engineer & Creator" />
+    <meta name="twitter:description" content="The personal website of Clinton J Avery — software engineer, creator, writer, and cartoonist. Essays, gag-a-day comics, and projects." />
   </head>
   <body>
     <div id="root"></div>

@@ -12,6 +12,8 @@ import matter from 'gray-matter';
 import type { Plugin, ViteDevServer } from 'vite';
 import type { PostMeta } from './schema';
 import { validatePost } from './validate';
+import { SITE_URL } from '../site/identity';
+import { buildRobots, buildSitemap } from '../site/sitemap';
 
 const VIRTUAL_ID = 'virtual:content-index';
 const RESOLVED_ID = '\0virtual:content-index';
@@ -199,6 +201,29 @@ export function contentPlugin(): Plugin {
       } catch (err) {
         server.config.logger.warn(`  \u26a0 ${String((err as Error).message)}\n`);
       }
+    },
+
+    generateBundle() {
+      // AC5 (Story 1.6): emit /sitemap.xml + /robots.txt from the published
+      // content-index. `cache` is populated by buildStart() (which runs before
+      // generateBundle in a production build). This hook does NOT run under
+      // `vite dev` — sitemap/robots are build artifacts; `npm run dev` serves
+      // the SPA routes, while `npm run build` produces dist/sitemap.xml.
+      // Drafts are excluded upstream by the 1.2 build gate; buildSitemap trusts
+      // its input is published-only (no status refilter — AD-1 contract).
+      const collection = cache;
+      if (!collection) return;
+      const metas = collection.posts.map((p) => p.meta);
+      this.emitFile({
+        type: 'asset',
+        fileName: 'sitemap.xml',
+        source: buildSitemap(metas, SITE_URL),
+      });
+      this.emitFile({
+        type: 'asset',
+        fileName: 'robots.txt',
+        source: buildRobots(SITE_URL),
+      });
     },
   };
 }

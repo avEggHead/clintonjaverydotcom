@@ -25,6 +25,10 @@ import {
   typeParamValue,
 } from './feed-utils';
 import { formatPostDate, stripRetrySrc } from './postPage-utils';
+import { buildHeadMeta } from '../site/head-meta';
+import { toAbsoluteUrl } from '../site/site-utils';
+import { SITE_URL } from '../site/identity';
+import { useHead } from '../head/useHead';
 
 const PAGE_SIZE = 10;
 const SKELETON_DELAY_MS = 150; // cold-load only — calm, no spinner churn (AC6)
@@ -55,6 +59,9 @@ export default function Feed() {
   const [searchParams, setSearchParams] = useSearchParams();
   const type = parseTypeParam(searchParams.get('type'));
   const page = parsePageParam(searchParams.get('page'));
+  // Story 1.6 — per-route <head>: the Feed reflects the current filter/page in
+  // og:url + canonical, mirroring the shareable pageHref URL (absolutized).
+  useHead(buildHeadMeta({ kind: 'feed', canonical: toAbsoluteUrl(pageHref(type, page), SITE_URL) }));
 
   // Filter-then-slice. totalPages is from the FILTERED count (so a type with
   // 0 posts → 0 pages, never the whole-list count). (AC1/AC2/AC5)
