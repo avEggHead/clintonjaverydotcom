@@ -8,15 +8,28 @@ import { contentPlugin } from './src/content/plugin'
 // https://vite.dev/config/
 // AD-4 / AD-6: all build/validation gates run inside vite build/dev.
 // Build command stays exactly "tsc -b && vite build" — no separate prebuild script.
-// Order: react() → mdx() (compile .mdx essay bodies) → contentPlugin()
+// Order: mdx() (compile .mdx essay bodies) → react() → contentPlugin()
 // (orchestrates glob/parse/validate/emit) → tailwindcss() → contrast gate.
+//
+// mdx() has NO `providerImportSource`: MDX 2 compiles provider-less (intrinsic
+// elements + a local _components map). Setting it to `'react'` (a 1.2 mistake)
+// made the compiled body do `import { useMDXComponents } from 'react'` — react
+// doesn't export that, so `_provideComponents` was undefined and rendering the
+// essay body threw `_provideComponents is not a function` (first exercised by
+// Story 1.4's <Suspense><Body/></Suspense>; 1.2's tests only built the index,
+// never rendered the MDX). We style essay prose via the `.prose` CSS rules, so
+// no MDXProvider / component overrides are needed → no `@mdx-js/react` dep.
+//
+// `include` is a glob (not a regex) so only .mdx essays compile through mdx;
+// the .md comic files (frontmatter-only, no body) are read directly by the
+// content plugin and must NOT be passed to mdx().
 export default defineConfig({
   plugins: [
-    mdx({ include: /\.mdx$/, providerImportSource: 'react' }),
+    mdx({ include: '**/*.mdx' }),
     react(),
     contentPlugin(),
     tailwindcss(),
     inkGardenContrastGate(),
   ],
-  base: "/"
+  base: '/'
 })

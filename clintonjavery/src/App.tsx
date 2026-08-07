@@ -4,7 +4,7 @@ import SiteFooter from './components/SiteFooter';
 import SkipLink from './components/SkipLink';
 import LandingPlaceholder from './pages/LandingPlaceholder';
 import FeedPlaceholder from './pages/FeedPlaceholder';
-import PostPlaceholder from './pages/PostPlaceholder';
+import PostPage from './pages/PostPage';
 import ProjectsPlaceholder from './pages/ProjectsPlaceholder';
 import ProjectShowPlaceholder from './pages/ProjectShowPlaceholder';
 
@@ -28,7 +28,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPlaceholder />} />
             <Route path="/p" element={<FeedPlaceholder />} />
-            <Route path="/p/:slug" element={<PostPlaceholder />} />
+            <Route path="/p/:slug" element={<PostPage />} />
             <Route path="/projects" element={<ProjectsPlaceholder />} />
             <Route path="/projects/:slug" element={<ProjectShowPlaceholder />} />
           </Routes>
