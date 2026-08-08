@@ -30,3 +30,11 @@ export const DEFAULT_OG_IMAGE = '/assets/bg-space.jpg';
 
 /** Twitter Card type (large image preview for strips/photos). */
 export const TWITTER_CARD = 'summary_large_image';
+
+/**
+ * Support destination (Story 1.8 / FR-12 / UX-DR-15). The `support-pill` CTA
+ * links here directly — the same Venmo URL the (now de-routed) Contribute page
+ * pointed at — so dropping the Contribute page from navigation can never break
+ * the Support link target. External; opened in a new tab with `rel=noopener`.
+ */
+export const SUPPORT_URL = 'https://venmo.com/u/clintonjavery';
