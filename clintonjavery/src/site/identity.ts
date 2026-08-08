@@ -36,7 +36,7 @@ export const DEFAULT_OG_IMAGE = '/assets/bg-space.jpg';
  * slash-root path (e.g. '/images/clint-at-desk.jpg') to drop the real eager,
  * high-priority <img> in as the LCP element. Slash-root; served from public/.
  */
-export const HERO_PHOTO: string | null = null;
+export const HERO_PHOTO: string | null = '/images/me-posing-temp.jpg'; // temp (2026-08): swap for the real action shot when sourced
 
 /** Twitter Card type (large image preview for strips/photos). */
 export const TWITTER_CARD = 'summary_large_image';
