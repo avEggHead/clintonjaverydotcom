@@ -1,0 +1,44 @@
+# Ink & Garden — Cloudflare Pages redirect contract (AR-9 / Story 1.7).
+#
+# HOW THIS FILE SHIPS: Vite copies everything in `public/` verbatim to `dist/`,
+# so this file is served by Cloudflare Pages at `/_redirects` (deployed root).
+#
+# ORDERING RULES (do not reorder):
+#   1. Cloudflare `_redirects` is FIRST-MATCH-WINS — a request tests rules top
+#      to bottom and takes the first match.
+#   2. STATIC FILES BEAT REDIRECTS — any request whose path matches a real file
+#      in `dist/` (e.g. `/assets/<hash>.js`, `/sitemap.xml`, `/robots.txt`,
+#      `/images/favicon.png`, `/assets/bg-space.jpg`, `/_redirects` itself) is
+#      served as-is and never reaches the rules below.
+#   3. HISTORIC 301s come FIRST (preserve previously-indexed inbound links — FR-13).
+#   4. The SPA fallback `/* /index.html 200` comes LAST so React Router owns
+#      every unmatched path (deep links like `/p/<slug>` resolve, no edge 404).
+#      `200` is an INTERNAL REWRITE, not a redirect — the browser keeps the
+#      original URL and RR7 renders the route client-side.
+#
+# SCOPE (Story 1.7 vs Epic 2):
+#   Story 1.7 ships the GENERIC historic redirects below + the SPA fallback.
+#   The PER-POST `/writing/<slug> → /p/<slug>` 301 map is deferred to Story 2.2
+#   (Epic 2) — it needs per-slug fidelity once the 16 essays are migrated.
+#   Epic 2 inserts those rules in the marked slot BELOW, BEFORE the catch-all.
+
+# --- Generic historic 301s (retired/renamed routes → new destinations) ---
+
+# Old About page → Landing (About is now the home identity surface, FR-1).
+/about    /        301
+# Retired Gallery + Reading pages → home.
+/reading  /        301
+/gallery  /        301
+# Old standalone Comics page → the unified Feed, filtered to comics.
+/comics   /p?type=comic  301
+
+# --- Story 2.2 (Epic 2): insert per-post 301 rules HERE ---------------------
+# Format (one per migrated slug, RECORDED above the catch-all):
+#   /writing/<slug>   /p/<slug>   301
+# Also (per AR-9, when the Projects migration lands):
+#   /tools/<slug>     /projects/<slug>   301
+#   /fun/<slug>       /projects/<slug>   301
+# ---------------------------------------------------------------------------
+
+# --- SPA fallback (LAST) — unmatched paths render via React Router ---------
+/*        /index.html   200

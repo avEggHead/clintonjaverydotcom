@@ -1,0 +1,24 @@
+# Ink & Garden — Cloudflare Pages cache headers (Story 1.7, NFR-2/SM-C1).
+#
+# Minimal by design — exactly two rules, nothing more (SM-C1: do not
+# over-engineer beyond Cloudflare static defaults). Cloudflare Pages reads
+# `/_headers` from the deployed root; Vite ships this from `public/`.
+#
+# Rule 1 — Vite emits content-hashed bundles under `/assets/<hash>.js|.css`
+#   → cache forever, immutable. A new `main` push produces new hashes, so the
+#   cache key changes and clients fetch the new files automatically.
+# Rule 2 — `index.html` (the SPA shell) → always revalidate, so a deploy
+#   surfaces immediately. (The `/index.html` pattern also covers the internal
+#   rewrite target of `/* /index.html 200`, so deep-link shell responses stay
+#   fresh too.)
+#
+# NOTE: `/assets/*` also covers co-located `public/assets/` images such as
+# `bg-space.jpg` (the OG image) — that's an acceptable over-cache for stable
+# social images; if one such image needs to refresh, rename the file (cache
+# bust) rather than editing in place.
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
