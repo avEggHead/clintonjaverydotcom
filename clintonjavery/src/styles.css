@@ -56,6 +56,7 @@
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   --text-display-lg: 56px;
+  --text-display-lg-mobile: 40px;  /* DESIGN.md display-lg-mobile — mobile hero ramp */
   --text-headline-lg: 36px;
   --text-headline-md: 28px;
   --text-headline-sm: 22px;
@@ -68,6 +69,7 @@
   --text-code: 15px;
 
   --leading-display: 1.05;
+  --leading-display-mobile: 1.08;  /* DESIGN.md display-lg-mobile line-height */
   --leading-headline-lg: 1.15;
   --leading-headline-md: 1.2;
   --leading-headline-sm: 1.3;

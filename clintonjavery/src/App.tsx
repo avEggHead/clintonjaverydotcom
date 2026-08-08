@@ -3,7 +3,7 @@ import TopNav from './components/TopNav';
 import SiteFooter from './components/SiteFooter';
 import SkipLink from './components/SkipLink';
 import ScrollToTop from './components/ScrollToTop';
-import LandingPlaceholder from './pages/LandingPlaceholder';
+import Landing from './pages/Landing';
 import Feed from './pages/Feed';
 import PostPage from './pages/PostPage';
 import ProjectsPlaceholder from './pages/ProjectsPlaceholder';
@@ -29,7 +29,7 @@ function App() {
         <TopNav />
         <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
           <Routes>
-            <Route path="/" element={<LandingPlaceholder />} />
+            <Route path="/" element={<Landing />} />
             <Route path="/p" element={<Feed />} />
             <Route path="/p/:slug" element={<PostPage />} />
             <Route path="/projects" element={<ProjectsPlaceholder />} />

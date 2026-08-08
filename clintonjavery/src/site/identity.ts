@@ -28,6 +28,16 @@ export const SITE_DESCRIPTION =
  */
 export const DEFAULT_OG_IMAGE = '/assets/bg-space.jpg';
 
+/**
+ * Landing hero "action photograph" (Epic 3 / FR-1 / UX-DR-3). The brief calls
+ * for action photography of Clint programming and talking to people — an asset
+ * still to be sourced/commissioned. Until then, the hero renders an ambient
+ * mint-tinted placeholder (the key-screen mock's treatment). Set this to a
+ * slash-root path (e.g. '/images/clint-at-desk.jpg') to drop the real eager,
+ * high-priority <img> in as the LCP element. Slash-root; served from public/.
+ */
+export const HERO_PHOTO: string | null = null;
+
 /** Twitter Card type (large image preview for strips/photos). */
 export const TWITTER_CARD = 'summary_large_image';
 
