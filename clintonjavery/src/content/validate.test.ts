@@ -137,9 +137,32 @@ describe('buildCollection — integration over content/p fixtures', () => {
 
   it('emits published posts reverse-chronologically, excluding drafts (AC1/AC2/AC5)', () => {
     const { posts } = buildCollection(root);
-    // Essay + comic published; the draft-wip fixture is excluded.
+    // After Story 2.1 the collection is the 15 migrated essays + the 2 Epic-1
+    // sample fixtures (essay `hello-ink-garden`, comic `first-strip`); the
+    // `draft-wip` fixture is excluded (AC5). 17 published posts total.
     const slugs = posts.map((p) => p.meta.slug);
-    expect(slugs).toEqual(['hello-ink-garden', 'first-strip']);
+    expect(slugs).toHaveLength(17);
+    expect(slugs).toEqual(
+      expect.arrayContaining([
+        'hello-ink-garden',
+        'first-strip',
+        'apertus-open-source-llm',
+        'two-powershell-commands-of-domain-transfer',
+        'run-a-model-locally',
+        'triple-dt-software-engineering-framework',
+        'dialogues-with-the-robot',
+        'creating-a-package',
+        'making-things-harder',
+        'security-and-obscurity',
+        'books-are-good',
+        'two-mindsets-of-engineering',
+        'three-concepts-for-support',
+        'mass-migration-from-the-cloud',
+        'values-beyond-the-bottom-line',
+        'does-genai-remove-the-bottleneck',
+        'bicycle-or-wheelchair',
+      ]),
+    );
 
     const essay = posts.find((p) => p.meta.slug === 'hello-ink-garden');
     expect(essay?.meta.type).toBe('essay');
@@ -152,7 +175,11 @@ describe('buildCollection — integration over content/p fixtures', () => {
     expect(comic.meta.strip.alt.length).toBeGreaterThan(0); // AC2 / FR-8
     expect(comic.bodyPath).toBeUndefined(); // comics have no body
 
-    // Reverse-chron: essay (2026-08-06) before comic (2026-08-01).
+    // Reverse-chron (FR-5): each post's date is <= the previous (newest first).
+    for (let i = 1; i < posts.length; i++) {
+      expect(posts[i - 1].meta.date >= posts[i].meta.date).toBe(true);
+    }
+    // The two newest are the Epic-1 samples: essay (2026-08-06) then comic (2026-08-01).
     expect(posts[0].meta.date).toBe('2026-08-06');
     expect(posts[1].meta.date).toBe('2026-08-01');
 
