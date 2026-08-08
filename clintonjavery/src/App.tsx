@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import TopNav from './components/TopNav';
 import SiteFooter from './components/SiteFooter';
 import SkipLink from './components/SkipLink';
+import ScrollToTop from './components/ScrollToTop';
 import LandingPlaceholder from './pages/LandingPlaceholder';
 import Feed from './pages/Feed';
 import PostPage from './pages/PostPage';
@@ -21,6 +22,7 @@ import ProjectShowPlaceholder from './pages/ProjectShowPlaceholder';
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="flex min-h-screen flex-col">
         <SkipLink />
         <TopNav />
