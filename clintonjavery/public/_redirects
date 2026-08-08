@@ -36,6 +36,10 @@
 # an indexed /writing (the legacy list page) would hit the SPA fallback and
 # render blank (RR7 has no catch-all route) — a historic-continuity gap.
 /writing  /p  301
+# Old /support (the legacy Contribute page — Venmo) → the unified Feed, whose
+# footer carries the support-pill (Story 1.8). Lands the visitor where the
+# support affordance now lives rather than a bare redirect to home.
+/support  /p  301
 
 # --- Story 2.2 (Epic 2): per-post 301s for migrated essay URLs -------------
 # Source = the prior live /writing/<slug> path the legacy app routed

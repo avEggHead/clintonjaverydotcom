@@ -8,6 +8,7 @@ import Feed from './pages/Feed';
 import PostPage from './pages/PostPage';
 import ProjectsPlaceholder from './pages/ProjectsPlaceholder';
 import ProjectShowPlaceholder from './pages/ProjectShowPlaceholder';
+import NotFoundPage from './pages/NotFoundPage';
 
 // Route shell (ARCHITECTURE-SPINE AD-5 / AC1). Fixed routes: `/`, `/p`,
 // `/projects`, `/projects/:slug`; dynamic `/p/:slug` is content-derived (the
@@ -33,6 +34,9 @@ function App() {
             <Route path="/p/:slug" element={<PostPage />} />
             <Route path="/projects" element={<ProjectsPlaceholder />} />
             <Route path="/projects/:slug" element={<ProjectShowPlaceholder />} />
+            {/* Catch-all — unmatched paths render the on-brand NotFound (Story 2.3)
+                with a noindex <head>, instead of a blank page (RR7 has no built-in 404). */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
         <SiteFooter />

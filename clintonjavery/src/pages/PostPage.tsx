@@ -1,9 +1,10 @@
 import { Suspense, lazy, useMemo, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { posts } from '../content';
 import { findPost, formatPostDate, stripRetrySrc } from './postPage-utils';
 import { buildHeadMeta } from '../site/head-meta';
 import { useHead } from '../head/useHead';
+import NotFound from './NotFound';
 
 // Story 1.4 — the real per-type Post page at /p/:slug (replaces 1.3's
 // PostPlaceholder). Essay → compiled MDX body in the prose-max reading column;
@@ -29,34 +30,6 @@ function EssaySkeleton() {
   );
 }
 
-/** On-brand not-found (AC5): "This one's not here." + links to Feed + Projects. */
-function NotFound() {
-  return (
-    <div className="mx-auto w-full max-w-prose-max px-4 py-16">
-      <h1 className="font-display text-3xl text-ink">This one's not here.</h1>
-      <p className="mt-4 font-body text-base text-on-surface-variant">
-        No post lives at this URL.
-      </p>
-      <p className="mt-8 font-body text-base text-on-surface-variant">
-        Try the{' '}
-        <Link
-          to="/p"
-          className="font-body text-link underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-safe:transition-colors"
-        >
-          Feed
-        </Link>{' '}
-        or{' '}
-        <Link
-          to="/projects"
-          className="font-body text-link underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-safe:transition-colors"
-        >
-          Projects
-        </Link>
-        .
-      </p>
-    </div>
-  );
-}
 
 /** Essay Post render (AC1): lazy MDX body in the prose-max reading column. */
 function EssayPostView({
