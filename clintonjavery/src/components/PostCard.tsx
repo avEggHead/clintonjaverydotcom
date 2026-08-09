@@ -77,15 +77,20 @@ export function ComicCard({ post }: { post: ComicPost }) {
   );
 }
 
-/** Comic card image with the 1.4-style load-failure retry (EXPERIENCE state
- *  table line 92). On error the `<img>` stays mounted `sr-only` so its `alt`
- *  remains in the accessibility tree; a muted retry tile shows over it. */
+/** Comic card image — a fixed-height TOP SLICE preview of the strip (the card
+ *  is a `<Link>` to `/p/<slug>`, so a click goes to the full zoom/pan
+ *  ComicViewer). The `<img>` keeps full width (`w-full h-auto`); a
+ *  `overflow-hidden` fixed-height viewport clips everything past the slice,
+ *  so a tall strip shows its first panel/beginning with no width crop. A subtle
+ *  bottom fade signals "more below — click in". The 1.4-style load-failure
+ *  retry is preserved; on error the `<img>` stays `sr-only` so its `alt` stays
+ *  in the a11y tree. */
 function ComicCardImage({ post }: { post: ComicPost }) {
   const [failed, setFailed] = useState(false);
   const [retryKey, setRetryKey] = useState(0);
 
   return (
-    <div className="relative">
+    <div className="relative h-48 overflow-hidden sm:h-56">
       <img
         src={stripRetrySrc(post.strip.image, retryKey)}
         alt={post.strip.alt}
@@ -93,8 +98,15 @@ function ComicCardImage({ post }: { post: ComicPost }) {
         loading="lazy"
         className={failed ? 'sr-only' : 'block h-auto w-full'}
       />
+      {/* bottom fade — "more below, click in" (decorative, not in a11y tree) */}
+      {!failed ? (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-linear-to-t from-surface to-transparent"
+        />
+      ) : null}
       {failed ? (
-        <div className="flex min-h-[180px] w-full items-center justify-center bg-surface-container text-center">
+        <div className="flex h-full w-full items-center justify-center bg-surface-container text-center">
           <div>
             <p className="text-sm text-on-surface-variant">
               Couldn&rsquo;t load the strip. Refresh?

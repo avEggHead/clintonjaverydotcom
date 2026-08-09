@@ -137,15 +137,19 @@ describe('buildCollection — integration over content/p fixtures', () => {
 
   it('emits published posts reverse-chronologically, excluding drafts (AC1/AC2/AC5)', () => {
     const { posts } = buildCollection(root);
-    // After Story 2.1 the collection is the 15 migrated essays + the 2 Epic-1
-    // sample fixtures (essay `hello-ink-garden`, comic `first-strip`); the
-    // `draft-wip` fixture is excluded (AC5). 17 published posts total.
+    // After Story 2.1 the collection is the 15 migrated essays + the
+    // `hello-ink-garden` sample essay + 3 comics (cab-week-1/2/4 — the
+    // "Certified Artisanal Brainthoughts" series; the old `first-strip`
+    // fixture was renamed into `cab-week-4` keeping its 2026-07-16 date);
+    // the `draft-wip` fixture is excluded (AC5). 19 published posts total.
     const slugs = posts.map((p) => p.meta.slug);
-    expect(slugs).toHaveLength(17);
+    expect(slugs).toHaveLength(19);
     expect(slugs).toEqual(
       expect.arrayContaining([
         'hello-ink-garden',
-        'first-strip',
+        'cab-week-1',
+        'cab-week-2',
+        'cab-week-4',
         'apertus-open-source-llm',
         'two-powershell-commands-of-domain-transfer',
         'run-a-model-locally',
@@ -169,7 +173,7 @@ describe('buildCollection — integration over content/p fixtures', () => {
     if (essay?.meta.type !== 'essay') throw new Error('essay');
     expect(typeof essay.bodyPath).toBe('string'); // lazy MDX importer path (AC1)
 
-    const comic = posts.find((p) => p.meta.slug === 'first-strip');
+    const comic = posts.find((p) => p.meta.slug === 'cab-week-4');
     expect(comic?.meta.type).toBe('comic');
     if (comic?.meta.type !== 'comic') throw new Error('comic');
     expect(comic.meta.strip.alt.length).toBeGreaterThan(0); // AC2 / FR-8
@@ -179,9 +183,9 @@ describe('buildCollection — integration over content/p fixtures', () => {
     for (let i = 1; i < posts.length; i++) {
       expect(posts[i - 1].meta.date >= posts[i].meta.date).toBe(true);
     }
-    // The two newest are the published sample essay (hello-ink-garden
-    // 2026-08-06) then the comic first-strip — now the real comic
-    // "Certified Artisanal Brainthoughts" (2026-07-16), committed in 4 -1.
+    // The two newest are the published sample essay (hello-ink-garden,
+    // 2026-08-06) then the comic cab-week-4 ("Certified Artisanal
+    // Brainthoughts" #4, 2026-07-16 — the rehoused former first-strip).
     expect(posts[0].meta.date).toBe('2026-08-06');
     expect(posts[1].meta.date).toBe('2026-07-16');
 
