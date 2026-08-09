@@ -1,106 +1,46 @@
-import styles from "../styles/layout.module.css";
+// `/projects` — the Projects portfolio (Epic 4 / Story 4.1 / FR-9).
+//
+// Lists Projects Entries as cards: title, one-line summary (`body-sm`), stack
+// chips, and live + source affordances. Responsive grid — 1 col `<768`, 2 col
+// `768–1024`, 3 col `>=1024` (UX-DR-12). Subtle hover lift on `pointer:fine`
+// only (handled in ProjectCard). Dead live/source links de-emphasised, not
+// removed (UX-DR-16). The live tool for each in-site entry renders at
+// `/projects/:slug` (Story 4.2) — until then the show route is the placeholder.
+//
+// Content-index contract (AD-1): imports `projects` from `../data/projects`
+// (a typed module — Projects are code entries, not MDX content). Head via
+// the 1.6 `projects` kind (canonical = /projects). Tailwind v4 + @theme (AD-6).
+
+import { projects } from '../data/projects';
+import { ProjectCard } from '../components/ProjectCard';
+import { buildHeadMeta } from '../site/head-meta';
+import { useHead } from '../head/useHead';
+import { toAbsoluteUrl } from '../site/site-utils';
+import { SITE_URL } from '../site/identity';
 
 export default function Projects() {
+  useHead(
+    buildHeadMeta({
+      kind: 'projects',
+      canonical: toAbsoluteUrl('/projects', SITE_URL),
+    }),
+  );
+
   return (
-    <div className={styles.pageContainer}>
-      <h1 className={styles.pageHeading}>Projects</h1>
-      <p>Here are a few of the things I've built:</p>
+    <div className="mx-auto w-full max-w-[1100px] px-4 py-12 sm:py-16">
+      <h1 className="font-display text-headline-lg text-ink">Projects</h1>
+      <p className="mt-4 max-w-prose font-body text-body-lg leading-prose text-on-surface-variant">
+        Small tools and games built and shipped here — each one live and
+        usable, with the source a click away. Pick one and take it for a spin.
+      </p>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "30px" }} >
-        <div>
-          <h2>
-            <a href="https://coinfunarcade.com" target="_blank" rel="noopener noreferrer" style={{color: "blue"}}>
-              CoinFunArcade.com
-            </a>
-          </h2>
-          <p style={{ paddingRight: "2rem" }}>
-            An online video arcade in your browser.  Test your reflexes, build your brain, just have fun.  
-            Do you love Ads?  Do you love having more accounts and passwords to remember?  Do you like worrying that the game site 
-            your kids like might not be safe for them?
-            No? 
-            Well CoinFunArcade.com is the place. No ads, no accounts, no social media integration, no passwords, no tracking.
-            Just pay fifty cents and play for thirty days with your token.
-          </p>
-          <p><strong>Tech Stack:</strong> Vite React.  TypeScript, HTML, CSS, JavaScript.  Cloudflare Pages, Cloudflare Worker, Cloudflare D1, Stripe.</p>
-        </div>
-
-        <div>
-          <h2>
-            <a href="https://www.theorhetorical.com" target="_blank" rel="noopener noreferrer" style={{color: "blue"}}>
-              Theorhetorical.com
-            </a>
-          </h2>
-          <p style={{ paddingRight: "2rem" }}>
-            A digital garden of speculative science — exploring unconventional theories blending imagination and rational structure.
-          </p>
-          <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript, Azure Storage, Static Website, Cloudflare</p>
-        </div>
-
-        <div>
-          <h2>
-            <a href="https://www.scrumsay.com" target="_blank" rel="noopener noreferrer" style={{color: "blue"}}>
-              Scrumsay.com
-            </a>
-          </h2>
-          <p style={{ paddingRight: "2rem" }}>
-            An agile dev team tool built for effort estimation. Originally inspired by not being able to find a forever-free alternative.
-          </p>
-          <p><strong>Tech Stack:</strong> HTML, JavaScript, SignalR, Azure hosting</p>
-        </div>
-      </div>
-
-      <div>
-        <h2>Memorizer 5000</h2>
-        <p style={{ paddingRight: "2rem" }}>
-        A mobile app for memorizing passages of text through increasing fill-in-the-blank recall. Built using Unity and exported as an Android APK.
-        </p>
-        <p><strong>Tech Stack:</strong> Unity, C#</p>
-        <a
-          href="https://drive.usercontent.google.com/download?id=158zkcRdpwcsYAlOeIKOMcM_cgBdygt4j&export=download&authuser=0"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: "#0066cc", fontWeight: "bold" }}
-        >
-          Download APK via Google Drive
-        </a>
-
-        <div style={{ marginTop: "10px" }}>
-          <p>Or scan to download:</p>
-          <img
-            src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://drive.usercontent.google.com/download?id=158zkcRdpwcsYAlOeIKOMcM_cgBdygt4j%26export=download%26authuser=0"
-            alt="Download Memorizer 5000 APK"
-            style={{ width: "150px", height: "150px" }}
-          />
-        </div>
-      </div>
-
-
-      <div>
-          <h2>
-            <a href="https://github.com/avEggHead/LabCoat" target="_blank" rel="noopener noreferrer" style={{color: "blue"}}>
-              LabCoat GitHub repo
-            </a>
-          </h2>
-          <p style={{ paddingRight: "2rem" }}>
-          This is a C# programming learning aid.  It allows you to experiment with unfamiliar data structures, design patterns, and keywords.
-          It's handy because it makes it easy to keep track of your past experiments in an organized way.
-          </p>
-          <p><strong>Tech Stack:</strong> C# console app, GitHub repo</p>
-        </div>
-
-      <div>
-          <h2>
-            <a href="https://www.fitmetr.com" target="_blank" rel="noopener noreferrer" className={styles.disabledLink}>
-              Fitmetr.com  (Currently offline / archival only.)
-            </a>
-          </h2>
-          <p style={{ paddingRight: "2rem" }}>
-            A fitness accountability tool with live progress tracking.
-          </p>
-          <p><strong>Tech Stack:</strong> ASP.NET, RazorPages, AWS hosting</p>
-        </div>
-
-
+      <ul className="mt-10 grid list-none gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {projects.map((entry) => (
+          <li key={entry.slug} className="flex">
+            <ProjectCard entry={entry} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

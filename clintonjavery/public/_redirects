@@ -1,0 +1,88 @@
+# Ink & Garden — Cloudflare Pages redirect contract (AR-9 / Story 1.7).
+#
+# HOW THIS FILE SHIPS: Vite copies everything in `public/` verbatim to `dist/`,
+# so this file is served by Cloudflare Pages at `/_redirects` (deployed root).
+#
+# ORDERING RULES (do not reorder):
+#   1. Cloudflare `_redirects` is FIRST-MATCH-WINS — a request tests rules top
+#      to bottom and takes the first match.
+#   2. STATIC FILES BEAT REDIRECTS — any request whose path matches a real file
+#      in `dist/` (e.g. `/assets/<hash>.js`, `/sitemap.xml`, `/robots.txt`,
+#      `/images/favicon.png`, `/assets/bg-space.jpg`, `/_redirects` itself) is
+#      served as-is and never reaches the rules below.
+#   3. HISTORIC 301s come FIRST (preserve previously-indexed inbound links — FR-13).
+#   4. The SPA fallback `/* /index.html 200` comes LAST so React Router owns
+#      every unmatched path (deep links like `/p/<slug>` resolve, no edge 404).
+#      `200` is an INTERNAL REWRITE, not a redirect — the browser keeps the
+#      original URL and RR7 renders the route client-side.
+#
+# SCOPE (Story 1.7 vs Epic 2):
+#   Story 1.7 ships the GENERIC historic redirects below + the SPA fallback.
+#   The PER-POST `/writing/<slug> → /p/<slug>` 301 map is deferred to Story 2.2
+#   (Epic 2) — it needs per-slug fidelity once the 16 essays are migrated.
+#   Epic 2 inserts those rules in the marked slot BELOW, BEFORE the catch-all.
+
+# --- Generic historic 301s (retired/renamed routes → new destinations) ---
+
+# Old About page → Landing (About is now the home identity surface, FR-1).
+/about    /        301
+# Retired Gallery + Reading pages → home.
+/reading  /        301
+/gallery  /        301
+# Old standalone Comics page → the unified Feed, filtered to comics.
+/comics   /p?type=comic  301
+# Old Writing index → the unified Feed. The per-post /writing/<slug> rules in
+# the Story 2.2 block below complete the writing-route family; without this,
+# an indexed /writing (the legacy list page) would hit the SPA fallback and
+# render blank (RR7 has no catch-all route) — a historic-continuity gap.
+/writing  /p  301
+# Old /support (the legacy Contribute page — Venmo) → the unified Feed, whose
+# footer carries the support-pill (Story 1.8). Lands the visitor where the
+# support affordance now lives rather than a bare redirect to home.
+/support  /p  301
+
+# --- Story 2.2 (Epic 2): per-post 301s for migrated essay URLs -------------
+# Source = the prior live /writing/<slug> path the legacy app routed
+# (commit 64ead59: Route path="/writing/:slug" → Post). Legacy slugs with spaces
+# are emitted by the browser as %20 (a literal space would break the line
+# parser), so each spaced slug is percent-encoded here; mixed-case + the
+# apostrophe in "Where's" are kept literal (valid URL path chars, never
+# browser-encoded — that is the form search engines indexed). Destination = the
+# new kebab slug = its content/p/<slug>.mdx filename. FIRST-MATCH-WINS; these
+# specific paths never collide with the generic block above or the catch-all
+# below. Order mirrors the Story 2.1 migration table (reverse-chron).
+
+/writing/ApertusOpenSourceLLM /p/apertus-open-source-llm 301
+/writing/TwoPowershellCommandsofDomainTransfer /p/two-powershell-commands-of-domain-transfer 301
+/writing/Run%20a%20model%20locally%20to%20save%20tons%20of%20money /p/run-a-model-locally 301
+/writing/triple%20dt%20software%20engineering%20framework /p/triple-dt-software-engineering-framework 301
+/writing/dialogues%20with%20the%20robot%20troubleshooting /p/dialogues-with-the-robot 301
+/writing/creating%20a%20package /p/creating-a-package 301
+/writing/making%20things%20harder /p/making-things-harder 301
+/writing/Security%20and%20obscurity /p/security-and-obscurity 301
+/writing/books%20are%20good /p/books-are-good 301
+/writing/The%20paradoxical%20necessity /p/two-mindsets-of-engineering 301
+/writing/The%20dreaded%20on-call%20support%20rotation /p/three-concepts-for-support 301
+/writing/mass%20migration%20from%20the%20cloud /p/mass-migration-from-the-cloud 301
+/writing/tech%20improvments%20are%20only%20goood%20if%20they%20save%20money /p/values-beyond-the-bottom-line 301
+/writing/Where's%20the%20bottleneck /p/does-genai-remove-the-bottleneck 301
+/writing/bicycle-or-wheelchair /p/bicycle-or-wheelchair 301
+
+# --- Historic tool/game routes → Projects (Epic 4 / Story 4.2 / FR-9) -------
+# Cloudflare first-match-wins — these sit ABOVE the SPA `/*` fallback.
+# Legacy v1 routes (from git history) 301 to their rehomed /projects/:slug.
+# balloon-popperv2 was the collapsed-into-one v2 (Story 2.3) — fold to the
+# single Balloon Popper entry so neither 404s.
+/tools/timezone        /projects/time-zone-converter  301
+/tools/textanalyzer    /projects/text-analyzer        301
+/tools/effortestimator /projects/effort-estimator     301
+/tools/unitconverter   /projects/unit-converter       301
+/fun/balloon-popper    /projects/balloon-popper        301
+/fun/balloon-popperv2  /projects/balloon-popper        301
+# Bare indices → Projects (per the `/writing /p 301` pattern).
+/tools                 /projects                      301
+/fun                   /projects                      301
+# ---------------------------------------------------------------------------
+
+# --- SPA fallback (LAST) — unmatched paths render via React Router ---------
+/*        /index.html   200

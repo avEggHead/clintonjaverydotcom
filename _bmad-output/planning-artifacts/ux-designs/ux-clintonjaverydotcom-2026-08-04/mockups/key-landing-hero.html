@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>clintonjavery.com — Landing (key screen mock)</title>
+<!--
+  Key-screen mock · clintonjavery.com · Landing.
+  Offline render: system font stacks proxy the production Fraunces (serif) + Inter (sans) + JetBrains Mono (mono).
+  Governing spine sections (EXPERIENCE.md): Foundation, Information Architecture (Landing row),
+    Component Patterns (Top nav, Latest strip, Scroll-narrative section), State Patterns (Reduced motion).
+  Governing spine sections (DESIGN.md): Brand & Style, Colors, Typography, Components (landing-hero, nav-link, post-card, comic-card, button-primary).
+  Production renders Fraunces + Inter + JetBrains Mono; this mock uses Georgia / system-ui / ui-monospace.
+-->
+<style>
+  :root{
+    --surface:#FBFAF6; --surface-container:#EFECE4; --surface-container-low:#F5F2EC;
+    --ink:#1A1F1B; --on-surface-variant:#4A5249; --outline-variant:#E2E5DF; --outline:#CACFC8;
+    --primary:#2E7D32; --primary-container:#B8F5B0; --on-primary-container:#0E2A12;
+    --accent-mint:#6DF49A; --secondary:#C2602F; --on-secondary:#FFFFFF; --secondary-container:#F6D9C2; --on-secondary-container:#3A1A07;
+    --ink-surface:#12160F; --on-ink:#F4F2EC; --ink-variant:#9AA395;
+    --serif: Georgia, "Times New Roman", serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#cfcdc6}
+  .browser{max-width:1280px;margin:32px auto;background:var(--surface);border-radius:14px;
+    overflow:hidden;box-shadow:0 24px 60px rgba(26,31,27,.18);font-family:var(--sans);color:var(--ink)}
+  .chrome{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#0e120c;border-bottom:1px solid #000}
+  .dot{width:11px;height:11px;border-radius:50%}
+  .dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+  .url{margin-left:14px;color:var(--ink-variant);font-family:var(--mono);font-size:12px;letter-spacing:.02em}
+  /* nav */
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;}
+  .wordmark{font-family:var(--serif);font-size:20px;font-weight:600;letter-spacing:-.01em}
+  .wordmark b{color:var(--primary)}
+  .navlinks{display:flex;gap:26px;font-size:15px;color:var(--on-surface-variant)}
+  .navlinks a{text-decoration:none;color:inherit;border-bottom:2px solid transparent;padding-bottom:2px}
+  .navlinks a.on{color:var(--ink);border-bottom-color:var(--ink)}
+  /* hero */
+  .hero{position:relative;background:var(--ink-surface);color:var(--on-ink);
+    padding:64px 40px 72px;overflow:hidden}
+  .hero-photo{position:absolute;inset:0;opacity:.38} /* production: action photograph */
+  .hero-grid{position:relative;max-width:1080px;margin:0 auto;display:grid;gap:28px}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-mint)}
+  .h1{font-family:var(--serif);font-weight:500;font-size:62px;line-height:1.05;letter-spacing:-.02em;margin:8px 0 0;max-width:18ch}
+  .h1 em{font-style:italic;color:var(--accent-mint)}
+  .lede{font-size:18px;line-height:1.6;color:var(--ink-variant);max-width:52ch;margin-top:18px}
+  .cta-row{display:flex;gap:14px;align-items:center;margin-top:30px}
+  .btn{font-family:var(--sans);font-weight:600;font-size:15px;padding:13px 22px;border-radius:12px;text-decoration:none}
+  .btn.primary{background:var(--primary);color:#fff}
+  .btn.ghost{color:var(--on-ink);border:1px solid var(--ink-variant)}
+  /* latest */
+  .latest{max-width:1080px;margin:0 auto;padding:72px 40px}
+  .latest-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-surface-variant)}
+  .latest-title{font-family:var(--serif);font-size:34px;font-weight:500;margin:6px 0 28px;letter-spacing:-.01em}
+  .cards{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:22px}
+  .card{border:1px solid var(--outline-variant);border-radius:16px;background:var(--surface);overflow:hidden}
+  .card.art{grid-row:span 1}
+  .thumb{height:150px;display:flex;align-items:center;justify-content:center}
+  .thumb.comic{background:var(--ink-surface);color:var(--accent-mint);font-family:var(--serif);font-style:italic;font-size:22px}
+  .thumb.essay{background:var(--surface-container-low);color:var(--on-surface-variant)}
+  .cardbody{padding:16px 18px 20px}
+  .chip{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    padding:3px 9px;border-radius:9999px}
+  .chip.comic{background:var(--secondary-container);color:var(--on-secondary-container)}
+  .chip.essay{background:var(--primary-container);color:var(--on-primary-container)}
+  .cardtitle{font-family:var(--serif);font-size:21px;font-weight:500;line-height:1.2;margin:10px 0 6px;letter-spacing:-.01em}
+  .meta{font-size:13px;color:var(--on-surface-variant);line-height:1.5}
+  /* about-into-feed seam */
+  .teaser{max-width:1080px;margin:0 auto;padding:0 40px 88px;display:flex;justify-content:space-between;align-items:end;gap:24px}
+  .teaser h2{font-family:var(--serif);font-size:28px;font-weight:500;margin:0;letter-spacing:-.01em}
+  .teaser a{font-family:var(--sans);color:var(--primary);font-weight:600;text-decoration:none}
+  footer{border-top:1px solid var(--outline-variant);padding:26px 40px;color:var(--on-surface-variant);font-size:13px;display:flex;justify-content:space-between}
+</style>
+</head>
+<body>
+  <div class="browser">
+    <div class="chrome"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="url">clintonjavery.com</span></div>
+
+    <!-- nav -->
+    <div class="nav">
+      <div class="wordmark">clinton<b>avery</b></div>
+      <div class="navlinks">
+        <a href="#" class="on">Writing · Comics</a>
+        <a href="#">Projects</a>
+      </div>
+    </div>
+
+    <!-- hero (identity is the About) -->
+    <div class="hero">
+      <div class="hero-photo"><!-- production: action photograph at low opacity over ink-surface -->
+        <svg width="100%" height="100%" viewBox="0 0 1280 520" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;opacity:.22">
+          <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2E7D32"/><stop offset="1" stop-color="#12160F"/></linearGradient></defs>
+          <rect width="1280" height="520" fill="url(#g)"/>
+        </svg>
+      </div>
+      <div class="hero-grid">
+        <span class="eyebrow">Writing · Comics · Projects</span>
+        <h1 class="h1">I draw funny strips, write essays, and <em>build things</em>.</h1>
+        <p class="lede">A personal publishing studio for humorous comics and the occasional technical essay — plus the small tools I build along the way. New here every week.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#">Read the latest&nbsp;&nbsp;→</a>
+          <a class="btn ghost" href="#projects">Explore Projects</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- latest (routed from the hero; the seam where About-into-Feed begins) -->
+    <div class="latest">
+      <div class="latest-eyebrow">Latest</div>
+      <h2 class="latest-title">New this week</h2>
+      <div class="cards">
+        <div class="card art">
+          <div class="thumb comic">“Single image, fully lettered in Krita.”</div>
+          <div class="cardbody">
+            <span class="chip comic">Comic</span>
+            <h3 class="cardtitle">Stand-Up Comedian's Wi-Fi</h3>
+            <p class="meta">Aug 3, 2026</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="thumb comic">“gag strip · panel art”</div>
+          <div class="cardbody">
+            <span class="chip comic">Comic</span>
+            <h3 class="cardtitle">The Router Replies</h3>
+            <p class="meta">Jul 28, 2026</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="thumb essay"><span style="font-family:var(--serif);color:var(--on-surface-variant)">essay · 6 min</span></div>
+          <div class="cardbody">
+            <span class="chip essay">Essay</span>
+            <h3 class="cardtitle">On Publishing Without a CMS</h3>
+            <p class="meta">Jul 21, 2026</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="teaser">
+      <h2>More in the Feed →</h2>
+      <a href="#">See all essays &amp; comics</a>
+    </div>
+
+    <footer>
+      <span>© 2026 Clinton J. Avery</span>
+      <span>Made by hand · on Cloudflare Pages</span>
+    </footer>
+  </div>
+</body>
+</html>

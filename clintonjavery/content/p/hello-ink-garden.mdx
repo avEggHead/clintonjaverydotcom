@@ -1,0 +1,20 @@
+---
+title: "Hello, Ink & Garden"
+date: "2026-08-06"
+type: essay
+excerpt: "A first post on the new build-time content pipeline."
+tags: ["meta", "pipeline"]
+---
+
+## A first essay
+
+This is a sample Essay Post rendered through the new Ink & Garden content
+pipeline. It is markdown with MDX compilation — headings, paragraphs, and
+inline images all compile at build time into a typed `Post` in the
+`content-index`.
+
+![A placeholder hero image alt-texted for accessibility](/content/p/hello-ink-garden/hero.png)
+
+The pipeline parses this frontmatter with `gray-matter`, validates it against
+the schema, and emits the body as a lazily-imported MDX component. No runtime
+fetch — everything materializes at build time (AD-3).

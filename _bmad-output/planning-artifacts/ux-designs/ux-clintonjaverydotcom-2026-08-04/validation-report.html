@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Filled from validation-report.md twin. Preserves template CSS/structure. -->
+<head>
+<meta charset="utf-8">
+<title>UX Design Validation: clintonjavery.com (Ink & Garden)</title>
+<style>
+  :root {
+    --bg: #fafaf9; --surface: #ffffff; --border: #e7e5e4; --text: #1c1917; --muted: #78716c;
+    --verdict-strong: #16a34a; --verdict-adequate: #65a30d; --verdict-thin: #d97706; --verdict-broken: #dc2626;
+    --sev-low: #64748b; --sev-medium: #ca8a04; --sev-high: #ea580c; --sev-critical: #dc2626;
+  }
+  * { box-sizing: border-box; } html, body { margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; }
+  .container { max-width: 960px; margin: 0 auto; padding: 32px 24px 64px; }
+  header.report-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+  .title h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+  .title .subtitle { color: var(--muted); font-size: 13px; margin-top: 4px; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .synthesis { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--muted); border-radius: 8px; padding: 18px 22px; margin-bottom: 24px; font-size: 15.5px; }
+  .synthesis p { margin: 0 0 10px; } .synthesis p:last-child { margin-bottom: 0; }
+  .dimension-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .dim-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+  .dim-card .dim-name { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+  .dim-card .dim-verdict { font-size: 14px; font-weight: 600; }
+  section.dimension, section.reviewer-section { margin-bottom: 14px; }
+  section.dimension details, section.reviewer-section details { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  section summary { padding: 14px 20px; cursor: pointer; user-select: none; list-style: none; display: flex; align-items: center; gap: 12px; }
+  section summary::-webkit-details-marker { display: none; }
+  section summary::before { content: "▸"; display: inline-block; color: var(--muted); transition: transform 0.15s ease; }
+  section details[open] summary::before { transform: rotate(90deg); }
+  section summary h2 { display: inline; margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.005em; flex: 1; }
+  .verdict-pill { font-size: 11px; padding: 3px 10px; border-radius: 999px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: white; }
+  .verdict-strong { background: var(--verdict-strong); } .verdict-adequate { background: var(--verdict-adequate); } .verdict-thin { background: var(--verdict-thin); } .verdict-broken { background: var(--verdict-broken); }
+  .dim-body { padding: 4px 20px 18px; } .dim-judgment { color: var(--text); font-size: 14.5px; } .dim-judgment p { margin: 0 0 10px; }
+  .findings-list { padding: 0 20px 4px; }
+  article.finding { padding: 14px 0; border-top: 1px solid var(--border); }
+  article.finding:first-child { border-top: none; }
+  article.finding header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+  .badge { font-size: 10.5px; padding: 3px 8px; border-radius: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.4; }
+  .badge-sev-low { background: rgba(100,116,139,.12); color: var(--sev-low); }
+  .badge-sev-medium { background: rgba(202,138,4,.14); color: var(--sev-medium); }
+  .badge-sev-high { background: rgba(234,88,12,.14); color: var(--sev-high); }
+  .badge-sev-critical { background: rgba(220,38,38,.14); color: var(--sev-critical); }
+  .badge-closed { background: rgba(22,163,74,.12); color: var(--verdict-strong); }
+  .finding-title { margin: 0; font-size: 15px; font-weight: 500; flex: 1; min-width: 200px; }
+  .finding-location { font-family: ui-monospace,"SF Mono",Menlo,monospace; font-size: 12.5px; color: var(--muted); }
+  .finding-note, .finding-fix { margin-top: 6px; font-size: 14px; }
+  .finding-fix strong { color: var(--muted); font-weight: 500; }
+  .reviewer-source { font-size: 12px; color: var(--muted); font-family: ui-monospace,"SF Mono",Menlo,monospace; }
+  .mechanical { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin-top: 24px; font-size: 14px; }
+  .mechanical h3 { margin: 0 0 10px; font-size: 14px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .mechanical ul { margin: 0; padding-left: 20px; } .mechanical li { margin-bottom: 4px; color: var(--text); }
+  footer.report-footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); font-family: ui-monospace,"SF Mono",Menlo,monospace; }
+  footer .meta { display: flex; gap: 24px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="report-header">
+      <div class="title">
+        <h1>clintonjavery.com — UX Design Validation Report</h1>
+        <div class="subtitle">_bmad-output/planning-artifacts/ux-designs/ux-clintonjaverydotcom-2026-08-04/ · DESIGN.md + EXPERIENCE.md (status: final)</div>
+      </div>
+    </header>
+
+    <div class="synthesis">
+      <p>A decision-ready UX contract. Post-fix: IA locked to the three PRD surfaces, the FR-16 comic-zoom interaction pinned with full keyboard parity, component names reconciled 1:1 across both spines, both key-screen mocks promoted and linked inline, and the UJ-3 (publish) flow explicitly deferred to the content pipeline.</p>
+      <p>The accessibility lens closed a caption-contrast regression in-spine and consolidated the remaining work to a single open gate: <strong>measure and lock the green/orange-on-paper contrast variants before ship</strong> — the spine declares intent and names darker alternates (<code>#256628</code> / <code>#26702C</code>); the build owns the measurement. All other findings were folded back into the spines.</p>
+    </div>
+
+    <div class="dimension-summary">
+      <div class="dim-card"><div class="dim-name">Flow coverage</div><div class="dim-verdict" style="color:var(--verdict-strong)">strong</div></div>
+      <div class="dim-card"><div class="dim-name">Token completeness</div><div class="dim-verdict" style="color:var(--verdict-adequate)">adequate</div></div>
+      <div class="dim-card"><div class="dim-name">Component coverage</div><div class="dim-verdict" style="color:var(--verdict-strong)">strong</div></div>
+      <div class="dim-card"><div class="dim-name">State coverage</div><div class="dim-verdict" style="color:var(--verdict-strong)">strong</div></div>
+      <div class="dim-card"><div class="dim-name">Visual reference</div><div class="dim-verdict" style="color:var(--verdict-strong)">strong</div></div>
+      <div class="dim-card"><div class="dim-name">Bloat &amp; overspec</div><div class="dim-verdict" style="color:var(--verdict-adequate)">adequate</div></div>
+      <div class="dim-card"><div class="dim-name">Inheritance discipline</div><div class="dim-verdict" style="color:var(--verdict-adequate)">adequate</div></div>
+      <div class="dim-card"><div class="dim-name">Shape fit</div><div class="dim-verdict" style="color:var(--verdict-strong)">strong</div></div>
+    </div>
+
+    <section class="dimension"><details>
+      <summary><h2>Flow coverage</h2><span class="verdict-pill verdict-strong">strong</span></summary>
+      <div class="dim-body"><div class="dim-judgment"><p>All 3 PRD UJs (Maya / Diana / Clinton) accounted for. UJ-1 + UJ-2 are Key Flows with named protagonists, numbered steps, climaxes, and failure/empty-state paths. UJ-3 deferred with rationale (content pipeline, no visitor UI); its edge routed to FR-8's build gate. Flow 3 covers the FR-16 zoom interaction.</p></div></div>
+      <div class="findings-list">
+        <article class="finding"><header><span class="badge badge-closed">folded</span><h3 class="finding-title">Flow 3 had no explicit failure path</h3><span class="finding-location">EXPERIENCE.md §Key Flows</span></header>
+          <div class="finding-note">Added a one-line failure note: zoom has no network failure mode; controls present whenever the strip renders; image-load failure handled by its own state.</div>
+          <div class="finding-fix"><strong>Fix:</strong> applied.</div>
+        </article>
+      </div>
+    </details></section>
+
+    <section class="dimension"><details>
+      <summary><h2>Token completeness</h2><span class="verdict-pill verdict-adequate">adequate</span></summary>
+      <div class="dim-body"><div class="dim-judgment"><p>All color tokens have hex; every <code>{path.to.token}</code> resolves; typography &amp; spacing &amp; rounded scales complete. Contrast section now declares WCAG-2.1-AA load-bearing pairs with approximate ratios.</p></div></div>
+      <div class="findings-list">
+        <article class="finding"><header><span class="badge badge-sev-medium">medium</span><h3 class="finding-title">Contrast ratios asserted, not measured</h3><span class="finding-location">DESIGN.md §Colors</span></header>
+          <div class="finding-note">Primary-green as link text / white-on-Primary button sit at the 4.5:1 AA threshold; Secondary fails as paragraph text (mitigated — caption now uses On-Surface-Variant + accent rule). Spine names darker alternates (<code>#256628</code> / <code>#26702C</code>); final value unselected.</div>
+          <div class="finding-fix"><strong>Fix:</strong> make contrast verification an explicit story task; lock the darker variant if under 4.5:1. (Open gate; owned by implementation.)</div>
+        </article>
+      </div>
+    </details></section>
+
+    <section class="dimension"><details>
+      <summary><h2>Component coverage</h2><span class="verdict-pill verdict-strong">strong</span></summary>
+      <div class="dim-body"><div class="dim-judgment"><p>Component token names reconciled 1:1 across both spines: <code>top-nav, type-filter, latest-strip, post-card, comic-card, comic-viewer, project-card, pagination, support-pill, scroll-narrative-section</code>; each has a visual row (DESIGN) and behavioral row (EXPERIENCE). <code>latest-strip</code> marked composite; <code>scroll-narrative-section</code> marked behavioral.</p></div></div>
+      <div class="findings-list">
+        <article class="finding"><header><span class="badge badge-closed">folded</span><h3 class="finding-title">Buttons had no EXPERIENCE Component Patterns row</h3><span class="finding-location">EXPERIENCE.md §Component Patterns</span></header>
+          <div class="finding-note">Added a Buttons row: one primary CTA per section; ghost for secondary routes; never more than one primary above the fold per section.</div>
+          <div class="finding-fix"><strong>Fix:</strong> applied.</div>
+        </article>
+      </div>
+    </details></section>
+
+    <section class="dimension"><details>
+      <summary><h2>State coverage</h2><span class="verdict-pill verdict-strong">strong</span></summary>
+      <div class="dim-body"><div class="dim-judgment"><p>Every IA surface covers its applicable states: empty filter, pagination-beyond-end, post-not-found, image-load-failure, zoom-active, reduced-motion, plus added Feed cold-load skeleton and Project demo/source-down. Draft posts correctly routed to build-time.</p></div></div>
+      <div class="findings-list">
+        <article class="finding"><header><span class="badge badge-closed">folded</span><h3 class="finding-title">Missing Feed cold-load + Project demo/source-down states</h3><span class="finding-location">EXPERIENCE.md §State Patterns</span></header>
+          <div class="finding-note">Added both rows: skeleton-on-first-paint; de-emphasised (not removed) dead demo/source link.</div>
+          <div class="finding-fix"><strong>Fix:</strong> applied.</div>
+        </article>
+      </div>
+    </details></section>
+
+    <section class="dimension"><details>
+      <summary><h2>Visual reference coverage</h2><span class="verdict-pill verdict-strong">strong</span></summary>
+      <div class="dim-body"><div class="dim-judgment"><p>Both key-screen mocks promoted to <code>mockups/</code> and linked inline at IA (<code>key-landing-hero.html</code>) and Comic Presentation (<code>key-comic-post-viewer.html</code>); "spine wins on conflict" stated once. <code>.working/</code> copies retained as audit trail.</p></div></div>
+      <div class="findings-list"></div>
+    </details></section>
+
+    <section class="dimension"><details>
+      <summary><h2>Bloat &amp; overspecification</h2><span class="verdict-pill verdict-adequate">adequate</span></summary>
+      <div class="dim-body"><div class="dim-judgment"><p>EXPERIENCE.md is rule-and-table based. DESIGN.md carries editorial Brand &amp; Style voice the spec permits. Token scales are dimension-based. No cuttable section.</p></div></div>
+      <div class="findings-list">
+        <article class="finding"><header><span class="badge badge-sev-low">low</span><h3 class="finding-title">Do's/Don'ts &amp; Anti-patterns lightly overlap</h3><span class="finding-location">DESIGN.md §Do's and Don'ts · EXPERIENCE.md §Anti-patterns</span></header>
+          <div class="finding-note">Different readers (designer vs engineer). No action required.</div>
+        </article>
+      </div>
+    </details></section>
+
+    <section class="dimension"><details>
+      <summary><h2>Inheritance discipline</h2><span class="verdict-pill verdict-adequate">adequate</span></summary>
+      <div class="dim-body"><div class="dim-judgment"><p><code>sources</code> resolves to the final PRD. UJ protagonists (Maya former-coworker; Diana hiring manager; Clinton author) verbatim and in correct roles. Glossary terms verbatim (Post, Strip, Type Filter, Projects Entries, Alt Text, Content Pipeline). Component names now reconciled.</p></div></div>
+      <div class="findings-list">
+        <article class="finding"><header><span class="badge badge-closed">folded</span><h3 class="finding-title">Support-Affordance → support-pill rename unmapped</h3><span class="finding-location">EXPERIENCE.md §Component Patterns</span></header>
+          <div class="finding-note">Support pill row now states it <em>is</em> the PRD's "Support Affordance / call-to-action," renamed.</div>
+          <div class="finding-fix"><strong>Fix:</strong> applied.</div>
+        </article>
+      </div>
+    </details></section>
+
+    <section class="dimension"><details>
+      <summary><h2>Shape fit</h2><span class="verdict-pill verdict-strong">strong</span></summary>
+      <div class="dim-body"><div class="dim-judgment"><p>DESIGN sections in canonical order, none omitted. EXPERIENCE has all required defaults + Responsive (multi-surface) + Inspiration &amp; Anti-patterns (reference products + rejects named) + an invented Comic Presentation that earns its place. Frontmatter status <code>final</code> on both.</p></div></div>
+      <div class="findings-list"></div>
+    </details></section>
+
+    <section class="reviewer-section"><details>
+      <summary><h2>Accessibility review</h2><span class="reviewer-source">review-accessibility.md</span></summary>
+      <div class="dim-body"><div class="dim-judgment"><p>WCAG 2.1 AA lens against the post-fix spines + the comic-viewer mock. Coherent AA floor; comic-zoom keyboard set complete; one open ship gate (contrast measurement); a caption-color regression closed in-spine; remaining items folded into the spine.</p></div></div>
+      <div class="findings-list">
+        <article class="finding"><header><span class="badge badge-sev-medium">medium</span><h3 class="finding-title">Green-on-paper contrast must be measured before ship</h3><span class="finding-location">DESIGN.md §Colors</span></header>
+          <div class="finding-note">Primary link-on-Surface and white-on-Primary button at the 4.5:1 threshold; Secondary fails as paragraph text (mitigated in caption). Spine names darker alternates; build selects.</div>
+          <div class="finding-fix"><strong>Fix:</strong> explicit story task — run contrast tool, lock variant if under 4.5:1. (Open gate.)</div>
+        </article>
+        <article class="finding"><header><span class="badge badge-closed">folded</span><h3 class="finding-title">Zoom controls must remain focusable while auto-hidden</h3><span class="finding-location">EXPERIENCE.md §Comic Presentation</span></header>
+          <div class="finding-note">Spine now states controls remain keyboard-focusable while visually auto-hidden (reveal on focus); never removed from tab order.</div>
+          <div class="finding-fix"><strong>Fix:</strong> applied.</div>
+        </article>
+        <article class="finding"><header><span class="badge badge-closed">folded</span><h3 class="finding-title">Reduced-motion transition too lenient at 150ms</h3><span class="finding-location">EXPERIENCE.md §State Patterns / §Accessibility Floor</span></header>
+          <div class="finding-note">Tightened to instant — no ≤150ms allowance under reduced-motion.</div>
+          <div class="finding-fix"><strong>Fix:</strong> applied.</div>
+        </article>
+        <article class="finding"><header><span class="badge badge-closed">folded</span><h3 class="finding-title">Mobile nav menu close behaviour not stated</h3><span class="finding-location">EXPERIENCE.md §Accessibility Floor</span></header>
+          <div class="finding-note">Added: menu closes on Escape, on route change, and on outside-click.</div>
+          <div class="finding-fix"><strong>Fix:</strong> applied.</div>
+        </article>
+        <article class="finding"><header><span class="badge badge-closed">folded</span><h3 class="finding-title">Comic caption colour regression risk</h3><span class="finding-location">DESIGN.md · mockups/key-comic-post-viewer.html</span></header>
+          <div class="finding-note">Caption now renders in On-Surface-Variant + Secondary left accent rule (not a Secondary fill). Mock updated to match. Left recorded to prevent regression.</div>
+          <div class="finding-fix"><strong>Fix:</strong> applied.</div>
+        </article>
+      </div>
+    </details></section>
+
+    <div class="mechanical">
+      <h3>Mechanical notes</h3>
+      <ul>
+        <li>Component names reconciled: <code>nav-link</code>→<code>top-nav</code>, <code>type-filter-segment</code>→<code>type-filter</code>, <code>comic-viewer-chrome</code>→<code>comic-viewer</code>, <code>pagination-nav</code>→<code>pagination</code>; added <code>latest-strip</code>, <code>scroll-narrative-section</code>, <code>comic-caption</code> rows.</li>
+        <li>All inline <code>[ASSUMPTION: …]</code> tags → <code>[CONFIRMED: …]</code> after author sign-off; Open Items → "Resolved Decisions."</li>
+        <li>Frontmatter <code>status: final</code> on both spines; <code>sources</code> resolves to the final PRD.</li>
+        <li>Mocks in <code>mockups/</code>; <code>.working/</code> retained as audit.</li>
+      </ul>
+    </div>
+
+    <footer class="report-footer">
+      <div class="meta">
+        <span>Rubric: review-rubric.md</span>
+        <span>Accessibility: review-accessibility.md</span>
+        <span>Generated: 2026-08-04</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
