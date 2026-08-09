@@ -1,10 +1,11 @@
-import { Suspense, lazy, useMemo, useState } from 'react';
+import { Suspense, lazy, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { posts } from '../content';
-import { findPost, formatPostDate, stripRetrySrc } from './postPage-utils';
+import { findPost, formatPostDate } from './postPage-utils';
 import { buildHeadMeta } from '../site/head-meta';
 import { useHead } from '../head/useHead';
 import NotFound from './NotFound';
+import ComicViewer from '../components/ComicViewer';
 
 // Story 1.4 — the real per-type Post page at /p/:slug (replaces 1.3's
 // PostPlaceholder). Essay → compiled MDX body in the prose-max reading column;
@@ -58,60 +59,8 @@ function EssayPostView({
   );
 }
 
-/** Comic Strip image with the AC6 load-failure/retry state (alt stays in AT). */
-function ComicStrip({
-  image,
-  alt,
-}: {
-  image: string;
-  alt: string;
-}) {
-  const [failed, setFailed] = useState(false);
-  const [retryKey, setRetryKey] = useState(0);
-
-  const retry = () => {
-    setFailed(false);
-    setRetryKey((k) => k + 1);
-  };
-
-  return (
-    <div className="bg-ink-surface">
-      {/* The <img> stays mounted (with alt) even when failed so its alt text
-       * remains available to AT; sr-only hides it from sighted users then. */}
-      {/* zoom/pan = Epic 5 (Story 5.1); this story renders fit only */}
-      <img
-        src={stripRetrySrc(image, retryKey)}
-        alt={alt}
-        loading="eager"
-        onError={() => setFailed(true)}
-        className={
-          failed
-            ? 'sr-only'
-            : 'block h-auto w-full' // edge-to-edge, no rounded mask on the artwork
-        }
-      />
-      {failed && (
-        <div
-          role="alert"
-          className="flex min-h-[40vh] flex-col items-center justify-center gap-5 px-6 py-16 text-center"
-        >
-          <p className="font-body text-lg text-on-ink">
-            Couldn&apos;t load the strip. Refresh?
-          </p>
-          <button
-            type="button"
-            onClick={retry}
-            className="inline-flex min-h-[44px] items-center rounded-md border border-on-ink/50 px-5 font-body text-base text-on-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-          >
-            Retry
-          </button>
-        </div>
-      )}
-    </div>
-  );
-}
-
-/** Comic Post render (AC2/AC3): dark stage Strip + title/date/caption/afterword. */
+/** Comic Post render (AC2/AC3): dark stage Strip + title/date/caption/afterword.
+ *  Epic 5 / 5.1 — the stage is the ComicViewer: fit + full zoom/pan (FR-16). */
 function ComicPostView({
   title,
   date,
@@ -127,8 +76,8 @@ function ComicPostView({
 }) {
   return (
     <article className="mx-auto w-full max-w-feed-max">
-      {/* dark ink-surface stage — the Strip only, edge-to-edge (no rounded mask) */}
-      <ComicStrip image={strip.image} alt={strip.alt} />
+      {/* dark ink-surface stage — full fit + zoom/pan (Epic 5 / FR-16) */}
+      <ComicViewer image={strip.image} alt={strip.alt} />
       {/* title / date / caption / afterword — paper surface below (AA-safe) */}
       <div className="px-4 py-8">
         <h1 className="font-display text-3xl text-ink sm:text-4xl">{title}</h1>
