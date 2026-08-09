@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import tailwindcss from '@tailwindcss/vite'
 import mdx from '@mdx-js/rollup'
+import remarkFrontmatter from 'remark-frontmatter'
 import { inkGardenContrastGate } from './src/build/contrast-plugin'
 import { contentPlugin } from './src/content/plugin'
 
@@ -25,7 +26,14 @@ import { contentPlugin } from './src/content/plugin'
 // content plugin and must NOT be passed to mdx().
 export default defineConfig({
   plugins: [
-    mdx({ include: '**/*.mdx' }),
+    mdx({
+      include: '**/*.mdx',
+      // Strip the leading `---\n…\n---` frontmatter so it isn't rendered as
+      // an <hr>+paragraph in the essay body. Metadata still comes from
+      // gray-matter in the content plugin; remark-frontmatter just makes MDX
+      // recognize & drop the block from the compiled body.
+      remarkPlugins: [remarkFrontmatter],
+    }),
     react(),
     contentPlugin(),
     tailwindcss(),
