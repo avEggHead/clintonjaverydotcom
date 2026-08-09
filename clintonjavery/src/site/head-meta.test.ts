@@ -166,6 +166,26 @@ describe('buildHeadMeta — feed', () => {
   });
 });
 
+describe('buildHeadMeta — projects', () => {
+  it('title is "Projects · <author>"', () => {
+    const head = buildHeadMeta({ kind: 'projects', canonical: `${SITE_URL}/projects` });
+    expect(head.title).toBe(`Projects · ${AUTHOR}`);
+  });
+
+  it('emits absolute og:url + canonical = the provided canonical', () => {
+    const head = buildHeadMeta({ kind: 'projects', canonical: `${SITE_URL}/projects` });
+    expect(tagByProperty(head.tags, 'og:url')?.content).toBe(`${SITE_URL}/projects`);
+    expect(head.links.find((l) => l.rel === 'canonical')?.href).toBe(`${SITE_URL}/projects`);
+  });
+
+  it('uses site default og:image + website og:type, no robots noindex', () => {
+    const head = buildHeadMeta({ kind: 'projects', canonical: `${SITE_URL}/projects` });
+    expect(tagByProperty(head.tags, 'og:image')?.content).toBe(`${SITE_URL}${DEFAULT_OG_IMAGE}`);
+    expect(tagByProperty(head.tags, 'og:type')?.content).toBe('website');
+    expect(tagByName(head.tags, 'robots')).toBeUndefined();
+  });
+});
+
 describe('buildHeadMeta — not-found', () => {
   const head = buildHeadMeta({ kind: 'not-found' });
 

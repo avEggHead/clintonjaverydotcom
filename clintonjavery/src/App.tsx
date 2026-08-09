@@ -6,7 +6,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Landing from './pages/Landing';
 import Feed from './pages/Feed';
 import PostPage from './pages/PostPage';
-import ProjectsPlaceholder from './pages/ProjectsPlaceholder';
+import Projects from './pages/Projects';
 import ProjectShowPlaceholder from './pages/ProjectShowPlaceholder';
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -32,7 +32,7 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/p" element={<Feed />} />
             <Route path="/p/:slug" element={<PostPage />} />
-            <Route path="/projects" element={<ProjectsPlaceholder />} />
+            <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:slug" element={<ProjectShowPlaceholder />} />
             {/* Catch-all — unmatched paths render the on-brand NotFound (Story 2.3)
                 with a noindex <head>, instead of a blank page (RR7 has no built-in 404). */}

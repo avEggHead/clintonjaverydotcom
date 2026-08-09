@@ -1,11 +1,11 @@
 ---
-title: "First Strip"
-date: "2026-08-01"
+title: "Certified Artisanal Brainthoughts"
+date: "2026-07-16"
 type: comic
-excerpt: "The first Ink & Garden strip."
+excerpt: "A trip to boss burger."
 strip:
   image: "/content/p/first-strip/strip.png"
-  alt: "A ink-and-garden style single-panel strip: a gardener in a wide-brim hat watering a row of seedlings labelled 'Ink' and 'Garden', captioned in hand-lettered Krita text."
-caption: "Planting the system."
-notes: "Drawn and lettered in Krita before publishing; the app renders the single Strip image only."
+  alt: "A comic showing Sid and Darrel visiting Burger Boss to try out their new AI Servers."
+caption: "Everything we wanted from AI and more."
+notes: "Drawn and lettered in Krita before publishing."
 ---

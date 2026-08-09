@@ -41,6 +41,7 @@ export interface HeadMeta {
 export type HeadInput =
   | { kind: 'home' }
   | { kind: 'feed'; canonical: string }
+  | { kind: 'projects'; canonical: string }
   | { kind: 'post'; post: Post }
   | { kind: 'not-found' };
 
@@ -89,6 +90,19 @@ export function buildHeadMeta(input: HeadInput): HeadMeta {
 
     case 'feed': {
       const title = `Feed · ${AUTHOR}`;
+      const tags = baseTags({
+        title,
+        description: SITE_DESCRIPTION,
+        imageAbs: DEFAULT_OG_ABS,
+        urlAbs: input.canonical,
+        ogType: 'website',
+        includeTwitterTitleDesc: false,
+      });
+      return { title, tags, links: [{ rel: 'canonical', href: input.canonical }] };
+    }
+
+    case 'projects': {
+      const title = `Projects · ${AUTHOR}`;
       const tags = baseTags({
         title,
         description: SITE_DESCRIPTION,
