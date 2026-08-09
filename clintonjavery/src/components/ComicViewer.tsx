@@ -324,7 +324,7 @@ export default function ComicViewer({ image, alt }: { image: string; alt: string
         onBlur={() => {
           if (!hovering.current) setShowControls(false);
         }}
-        className={`relative overflow-hidden outline-none select-none ${
+        className={`relative flex items-center justify-center overflow-hidden outline-none select-none min-h-[60dvh] sm:min-h-0 ${
           zoomed ? 'touch-none' : 'touch-pan-y'
         }`}
         style={{ cursor: zoomed ? 'grab' : 'zoom-in' }}
