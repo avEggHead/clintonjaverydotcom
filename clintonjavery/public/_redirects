@@ -68,9 +68,20 @@
 /writing/Where's%20the%20bottleneck /p/does-genai-remove-the-bottleneck 301
 /writing/bicycle-or-wheelchair /p/bicycle-or-wheelchair 301
 
-# Also (per AR-9, deferred to Epic 4 / FR-9 — the Projects migration):
-#   /tools/<slug>     /projects/<slug>   301
-#   /fun/<slug>       /projects/<slug>   301
+# --- Historic tool/game routes → Projects (Epic 4 / Story 4.2 / FR-9) -------
+# Cloudflare first-match-wins — these sit ABOVE the SPA `/*` fallback.
+# Legacy v1 routes (from git history) 301 to their rehomed /projects/:slug.
+# balloon-popperv2 was the collapsed-into-one v2 (Story 2.3) — fold to the
+# single Balloon Popper entry so neither 404s.
+/tools/timezone        /projects/time-zone-converter  301
+/tools/textanalyzer    /projects/text-analyzer        301
+/tools/effortestimator /projects/effort-estimator     301
+/tools/unitconverter   /projects/unit-converter       301
+/fun/balloon-popper    /projects/balloon-popper        301
+/fun/balloon-popperv2  /projects/balloon-popper        301
+# Bare indices → Projects (per the `/writing /p 301` pattern).
+/tools                 /projects                      301
+/fun                   /projects                      301
 # ---------------------------------------------------------------------------
 
 # --- SPA fallback (LAST) — unmatched paths render via React Router ---------

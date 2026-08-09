@@ -166,6 +166,33 @@ describe('buildHeadMeta — feed', () => {
   });
 });
 
+describe('buildHeadMeta — project', () => {
+  const head = buildHeadMeta({
+    kind: 'project',
+    title: 'Time Zone Converter',
+    description: 'Convert a moment between any two time zones with Luxon.',
+    canonical: `${SITE_URL}/projects/time-zone-converter`,
+  });
+
+  it('title is "<entry title> · <author>"', () => {
+    expect(head.title).toBe(`Time Zone Converter · ${AUTHOR}`);
+  });
+
+  it('emits description = entry summary + og:url/canonical = provided', () => {
+    expect(tagByName(head.tags, 'description')?.content).toBe(
+      'Convert a moment between any two time zones with Luxon.',
+    );
+    expect(tagByProperty(head.tags, 'og:url')?.content).toBe(`${SITE_URL}/projects/time-zone-converter`);
+    expect(head.links.find((l) => l.rel === 'canonical')?.href).toBe(`${SITE_URL}/projects/time-zone-converter`);
+  });
+
+  it('uses site default og:image + website og:type, no robots noindex', () => {
+    expect(tagByProperty(head.tags, 'og:image')?.content).toBe(`${SITE_URL}${DEFAULT_OG_IMAGE}`);
+    expect(tagByProperty(head.tags, 'og:type')?.content).toBe('website');
+    expect(tagByName(head.tags, 'robots')).toBeUndefined();
+  });
+});
+
 describe('buildHeadMeta — projects', () => {
   it('title is "Projects · <author>"', () => {
     const head = buildHeadMeta({ kind: 'projects', canonical: `${SITE_URL}/projects` });

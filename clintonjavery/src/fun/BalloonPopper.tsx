@@ -1,7 +1,15 @@
-import { useEffect, useRef, useState } from "react";
-import styles from "../styles/layout.module.css";
+import { useEffect, useRef, useState } from 'react';
 
-const COLORS = ["red", "blue", "green", "yellow", "purple", "orange"];
+// Balloon Popper — re-skinned to Tailwind v4 + @theme tokens (Epic 4 / Story
+// 4.2). Game behavior preserved from the v1 tool: a target color, one balloon
+// spawns per second, popping a match scores +1 / a miss scores −1 (floored at
+// 0), and a button swaps the target. The balloon COLORS are CSS named colours
+// — they're GAME DATA (the target is a colour word the player matches), not
+// design tokens, so they stay on an inline `style` (no hex; AD-6 is about the
+// design system, not gameplay content). No CSS module, no own <h1>. AD-6.
+import { buttonGhost } from '../site/buttons';
+
+const COLORS = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
 
 function getRandomColor() {
   return COLORS[Math.floor(Math.random() * COLORS.length)];
@@ -9,18 +17,13 @@ function getRandomColor() {
 
 function Balloon({ color, onClick }: { color: string; onClick: () => void }) {
   return (
-    <div
+    <button
+      type="button"
       onClick={onClick}
-      style={{
-        backgroundColor: color,
-        width: "60px",
-        height: "80px",
-        borderRadius: "50%",
-        margin: "10px",
-        display: "inline-block",
-        cursor: "pointer",
-      }}
-    ></div>
+      aria-label={`Pop the ${color} balloon`}
+      style={{ backgroundColor: color }}
+      className="m-2.5 inline-block h-20 w-[60px] cursor-pointer rounded-full border border-black/10 shadow-sm transition-transform motion-safe:pointer-fine:hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+    />
   );
 }
 
@@ -54,14 +57,17 @@ export default function BalloonPopGame() {
   };
 
   return (
-    <div className={styles.pageContainer}>
-      <h1 className={styles.heading}>🎈 Balloon Pop</h1>
-      <p className={styles.pageSubtext}>
-        Pop the <strong>{targetColor}</strong> balloons!
+    <div className="flex flex-col gap-4">
+      <p className="font-body text-body-md text-on-surface-variant">
+        Pop the <strong className="text-ink">{targetColor}</strong> balloons!
       </p>
-      <p>Score: {score}</p>
-      <button onClick={changeTarget} className={styles.toolButton}>Change Target Color</button>
-      <div style={{ marginTop: "20px" }}>
+      <p className="font-body text-body-md text-ink">
+        Score: <strong className="font-display text-headline-sm text-primary">{score}</strong>
+      </p>
+      <button type="button" onClick={changeTarget} className={buttonGhost}>
+        Change target colour
+      </button>
+      <div className="mt-2 min-h-[100px] rounded-lg border border-outline-variant bg-surface-container-low p-3">
         {balloons.map((color, index) => (
           <Balloon key={index} color={color} onClick={() => handlePop(color, index)} />
         ))}

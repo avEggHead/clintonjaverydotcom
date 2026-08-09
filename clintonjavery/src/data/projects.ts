@@ -14,6 +14,11 @@
 // + the historic `/tools/:slug` + `/fun/:slug` → `/projects/:slug` 301s.
 
 import type { ComponentType } from 'react';
+import TimeZoneConverter from '../tools/TimeZoneConverter';
+import TextAnalyzer from '../tools/TextAnalyzer';
+import EffortSlider from '../tools/EffortSlider';
+import UnitConverter from '../tools/UnitConverter';
+import BalloonPopGame from '../fun/BalloonPopper';
 
 export interface ProjectEntry {
   /** URL slug — kebab-case. Routes to `/projects/:slug`. */
@@ -53,6 +58,7 @@ export const projects: ProjectEntry[] = [
     date: '2025-03-28',
     liveUrl: '/projects/time-zone-converter',
     sourceUrl: src('src/tools/TimeZoneConverter.tsx'),
+    component: TimeZoneConverter,
   },
   {
     slug: 'text-analyzer',
@@ -62,6 +68,7 @@ export const projects: ProjectEntry[] = [
     date: '2025-04-01',
     liveUrl: '/projects/text-analyzer',
     sourceUrl: src('src/tools/TextAnalyzer.tsx'),
+    component: TextAnalyzer,
   },
   {
     slug: 'effort-estimator',
@@ -71,6 +78,7 @@ export const projects: ProjectEntry[] = [
     date: '2025-08-02',
     liveUrl: '/projects/effort-estimator',
     sourceUrl: src('src/tools/EffortSlider.tsx'),
+    component: EffortSlider,
   },
   {
     slug: 'unit-converter',
@@ -80,6 +88,7 @@ export const projects: ProjectEntry[] = [
     date: '2026-04-03',
     liveUrl: '/projects/unit-converter',
     sourceUrl: src('src/tools/UnitConverter.tsx'),
+    component: UnitConverter,
   },
   {
     slug: 'balloon-popper',
@@ -89,6 +98,7 @@ export const projects: ProjectEntry[] = [
     date: '2025-04-01',
     liveUrl: '/projects/balloon-popper',
     sourceUrl: src('src/fun/BalloonPopper.tsx'),
+    component: BalloonPopGame,
   },
 ];
 

@@ -179,9 +179,11 @@ describe('buildCollection — integration over content/p fixtures', () => {
     for (let i = 1; i < posts.length; i++) {
       expect(posts[i - 1].meta.date >= posts[i].meta.date).toBe(true);
     }
-    // The two newest are the Epic-1 samples: essay (2026-08-06) then comic (2026-08-01).
+    // The two newest are the published sample essay (hello-ink-garden
+    // 2026-08-06) then the comic first-strip — now the real comic
+    // "Certified Artisanal Brainthoughts" (2026-07-16), committed in 4 -1.
     expect(posts[0].meta.date).toBe('2026-08-06');
-    expect(posts[1].meta.date).toBe('2026-08-01');
+    expect(posts[1].meta.date).toBe('2026-07-16');
 
     // The draft fixture never appears in the index.
     expect(posts.some((p) => p.meta.slug === 'draft-wip')).toBe(false);
