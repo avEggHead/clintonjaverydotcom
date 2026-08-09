@@ -13,8 +13,8 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import type { ComicPost, Post } from '../content';
 import { posts } from '../content';
+import { PostCard } from '../components/PostCard';
 import {
   buildPageWindow,
   paginatePosts,
@@ -24,7 +24,6 @@ import {
   type TypeFilter,
   typeParamValue,
 } from './feed-utils';
-import { formatPostDate, stripRetrySrc } from './postPage-utils';
 import { buildHeadMeta } from '../site/head-meta';
 import { toAbsoluteUrl } from '../site/site-utils';
 import { SITE_URL } from '../site/identity';
@@ -135,7 +134,7 @@ export default function Feed() {
           <ul className="flex flex-col gap-5">
             {items.map((post) => (
               <li key={post.slug}>
-                <Card post={post} />
+                <PostCard post={post} />
               </li>
             ))}
           </ul>
@@ -146,93 +145,6 @@ export default function Feed() {
       {totalPages > 1 && (
         <Pagination type={type} page={page} totalPages={totalPages} window={window} />
       )}
-    </div>
-  );
-}
-
-/* ── Card ── */
-
-function Card({ post }: { post: Post }) {
-  // Card title is an <h2> — the page <h1> is "Feed" (one h1 per page, NFR-1).
-  return post.type === 'essay' ? (
-    <EssayCard post={post} />
-  ) : (
-    <ComicCard post={post} />
-  );
-}
-
-const cardBase = `block rounded-lg border border-outline-variant bg-surface transition-colors hover:border-outline ${focusRing}`;
-
-function EssayCard({ post }: { post: Post }) {
-  return (
-    <Link to={`/p/${post.slug}`} className={`${cardBase} p-5`}>
-      <h2 className="font-display text-headline-sm text-ink">{post.title}</h2>
-      <p className="mt-1 text-sm text-on-surface-variant">
-        {formatPostDate(post.date)}
-      </p>
-      {post.excerpt ? (
-        <p className="mt-3 line-clamp-2 text-sm text-on-surface-variant">
-          {post.excerpt}
-        </p>
-      ) : null}
-    </Link>
-  );
-}
-
-function ComicCard({ post }: { post: ComicPost }) {
-  return (
-    <Link to={`/p/${post.slug}`} className={`${cardBase} overflow-hidden`}>
-      <ComicCardImage post={post} />
-      <div className="flex flex-wrap items-center gap-3 p-4">
-        <time dateTime={post.date} className="text-sm text-on-surface-variant">
-          {formatPostDate(post.date)}
-        </time>
-        {post.caption ? (
-          <span className="rounded-full bg-secondary-container px-3 py-1 text-sm text-on-secondary-container">
-            {post.caption}
-          </span>
-        ) : null}
-      </div>
-    </Link>
-  );
-}
-
-/** Comic card image with the 1.4-style load-failure retry (EXPERIENCE state
- *  table line 92). On error the <img> stays mounted `sr-only` so its `alt`
- *  remains in the accessibility tree; a muted retry tile shows over it. */
-function ComicCardImage({ post }: { post: ComicPost }) {
-  const [failed, setFailed] = useState(false);
-  const [retryKey, setRetryKey] = useState(0);
-
-  return (
-    <div className="relative">
-      <img
-        src={stripRetrySrc(post.strip.image, retryKey)}
-        alt={post.strip.alt}
-        onError={() => setFailed(true)}
-        loading="lazy"
-        className={failed ? 'sr-only' : 'block h-auto w-full'}
-      />
-      {failed ? (
-        <div className="flex min-h-[180px] w-full items-center justify-center bg-surface-container text-center">
-          <div>
-            <p className="text-sm text-on-surface-variant">
-              Couldn&rsquo;t load the strip. Refresh?
-            </p>
-            <button
-              type="button"
-              onClick={(e) => {
-                e.preventDefault(); // don't trigger the surrounding <Link>
-                setFailed(false);
-                setRetryKey((k) => k + 1);
-              }}
-              className={`mt-3 rounded-md border border-outline px-3 py-1.5 text-sm text-link ${focusRing}`}
-            >
-              Retry
-            </button>
-          </div>
-        </div>
-      ) : null}
     </div>
   );
 }

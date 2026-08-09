@@ -20,7 +20,9 @@ import { Link } from 'react-router-dom';
 import { buildHeadMeta } from '../site/head-meta';
 import { useHead } from '../head/useHead';
 import { HERO_PHOTO } from '../site/identity';
+import { posts } from '../content';
 import Reveal from '../components/Reveal';
+import { PostCard } from '../components/PostCard';
 
 export default function Landing() {
   useHead(buildHeadMeta({ kind: 'home' }));
@@ -97,11 +99,25 @@ export default function Landing() {
             Freshest essays and comics, straight from the feed — the three newest
             posts appear here, newest first.
           </p>
-          {/* Story 3.3 renders the Latest-3 strip here (FR-3). */}
-          <div className="mt-8 rounded-lg border border-outline-variant bg-surface-container-low px-6 py-10 text-center">
-            <p className="eyebrow text-eyebrow text-on-surface-variant">
-              The three newest posts arrive here next
-            </p>
+          {/* Latest-3 strip (FR-3 / Story 3.3): the 3 newest published posts,
+           * reverse-chrono, mixing essay + comic cards per type. `posts` is
+           * already reverse-chrono + draft-excluded by the content-index build
+           * gate (AD-1) — the same contract the Feed trusts. Newest card takes
+           * the wider column (key-landing-hero mock, 1.4fr 1fr 1fr). */}
+          <ul className="mt-8 grid gap-5 sm:grid-cols-[1.4fr_1fr_1fr]">
+            {posts.slice(0, 3).map((post) => (
+              <li key={post.slug}>
+                <PostCard post={post} headingLevel={3} />
+              </li>
+            ))}
+          </ul>
+          <div className="mt-8">
+            <Link
+              to="/p"
+              className="font-body text-body-md text-link underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+            >
+              See all in the Feed →
+            </Link>
           </div>
         </div>
       </Reveal>
