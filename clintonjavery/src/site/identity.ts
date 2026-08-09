@@ -20,7 +20,7 @@ export const SITE_TITLE = 'Clinton J Avery – Software Engineer & Creator';
 
 /** Site-default meta description (~130 chars). Used as the og:description fallback. */
 export const SITE_DESCRIPTION =
-  'The personal website of Clinton J Avery — software engineer, creator, writer, and cartoonist. Essays, gag-a-day comics, and projects.';
+  'The personal website of Clinton J Avery — software engineer, creator, writer, and cartoonist. Essays, humorous comics, and projects.';
 
 /**
  * Site-default Open Graph image (slash-root; absolutized at render time).

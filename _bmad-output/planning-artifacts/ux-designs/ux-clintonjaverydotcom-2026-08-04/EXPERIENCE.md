@@ -10,7 +10,7 @@ sources:
 
 # clintonjavery.com — Experience Spine
 
-> Behavioral contract. Visual identity lives in `DESIGN.md` (Ink & Garden); this spine is *how it works* and cross-references DESIGN.md tokens as `{path.to.token}`. **Spines win on conflict** with any mock or wireframe. WCAG 2.1 AA accessibility floor (PRD-confirmed). Responsive web, public, no auth.
+> Behavioral contract. Visual identity lives in `DESIGN.md` (Ink & Garden); this spine is _how it works_ and cross-references DESIGN.md tokens as `{path.to.token}`. **Spines win on conflict** with any mock or wireframe. WCAG 2.1 AA accessibility floor (PRD-confirmed). Responsive web, public, no auth.
 
 ## Foundation
 
@@ -18,18 +18,18 @@ Responsive web, mobile-first from 320px up to wide desktop, deployed static on C
 
 ## Information Architecture
 
-| Surface | Route (proposed) | Reached from | Purpose |
-|---|---|---|---|
-| Landing | `/` | direct / wordmark | Identity-narrative hero, Latest strip, routes to Feed + Projects (PRD FR-1–3) |
-| Feed | `/p` (all) | Landing, nav | Unified chronological Posts, Type Filter, paginated (PRD FR-4–5) |
-| Feed filtered | `/p?type=comic` / `?type=essay` | Type filter, Landing section links | Same Feed, pre-scoped by type |
-| Post | `/p/{slug}` | Feed, Latest, direct link | Per-type render: essay body or comic strip (PRD FR-6); comic viewer here |
-| Projects | `/projects` | Landing, nav | Projects Entries list (absorbs Tools/Fun) (PRD FR-9) |
-| Project tool | `/projects/{slug}` | Projects list | Live in-app tool demo (e.g., Unit Converter) |
+| Surface       | Route (proposed)                | Reached from                       | Purpose                                                                       |
+| ------------- | ------------------------------- | ---------------------------------- | ----------------------------------------------------------------------------- |
+| Landing       | `/`                             | direct / wordmark                  | Identity-narrative hero, Latest strip, routes to Feed + Projects (PRD FR-1–3) |
+| Feed          | `/p` (all)                      | Landing, nav                       | Unified chronological Posts, Type Filter, paginated (PRD FR-4–5)              |
+| Feed filtered | `/p?type=comic` / `?type=essay` | Type filter, Landing section links | Same Feed, pre-scoped by type                                                 |
+| Post          | `/p/{slug}`                     | Feed, Latest, direct link          | Per-type render: essay body or comic strip (PRD FR-6); comic viewer here      |
+| Projects      | `/projects`                     | Landing, nav                       | Projects Entries list (absorbs Tools/Fun) (PRD FR-9)                          |
+| Project tool  | `/projects/{slug}`              | Projects list                      | Live in-app tool demo (e.g., Unit Converter)                                  |
 
 Top-level nav surfaces **Feed · Projects**; the Landing is identity/entry. **No** `/about`, `/reading`, `/gallery`, `/fun`, `/tools`, `/support` top-level routes (PRD Non-Goals). The Support Affordance lives in content-page footers, not the nav (PRD FR-12).
 
-`[CONFIRMED: route scheme `/p` + `/p/{slug}` + `/projects/{slug}` (author, 2026-08-04); historic-path redirects deferred to architecture/SEO (PRD OQ1, OQ3).]`
+`[CONFIRMED: route scheme `/p`+`/p/{slug}`+`/projects/{slug}` (author, 2026-08-04); historic-path redirects deferred to architecture/SEO (PRD OQ1, OQ3).]`
 
 → Composition references: `mockups/key-landing-hero.html` (Landing), `mockups/key-comic-post-viewer.html` (Comic Post / viewer). Spine wins on conflict.
 
@@ -37,31 +37,31 @@ Top-level nav surfaces **Feed · Projects**; the Landing is identity/entry. **No
 
 Microcopy. Brand voice and aesthetic posture live in `DESIGN.md.Brand & Style`.
 
-| Do | Don't |
-|---|---|
-| "Latest" / "New this week" / "Read" / "Open the tool" | "Welcome!!" / "Click here to explore!" |
-| "No posts match that filter yet." | "0 results found 😞" |
-| "Couldn't load the strip. Refresh?" | "ERR_IMAGE_FAILED" |
-| Comic titles can be funny; UI chrome is straight. | Streaks, badges, exclamation marks, hype copy in chrome. |
-| A strip's caption is the author's; chrome stays out of the way. | Editorial chrome competing with the artwork. |
+| Do                                                              | Don't                                                    |
+| --------------------------------------------------------------- | -------------------------------------------------------- |
+| "Latest" / "New this week" / "Read" / "Open the tool"           | "Welcome!!" / "Click here to explore!"                   |
+| "No posts match that filter yet."                               | "0 results found 😞"                                     |
+| "Couldn't load the strip. Refresh?"                             | "ERR_IMAGE_FAILED"                                       |
+| Comic titles can be funny; UI chrome is straight.               | Streaks, badges, exclamation marks, hype copy in chrome. |
+| A strip's caption is the author's; chrome stays out of the way. | Editorial chrome competing with the artwork.             |
 
 ## Component Patterns
 
 Behavioral. Visual specs live in `DESIGN.md.Components`.
 
-| Component | Use | Behavioral rules |
-|---|---|---|
-| Top nav | all surfaces | Sticky, condensed on scroll; wordmark → `/`; `Feed · Projects` links; client-side nav (FR-14). `≤640px` collapses to a menu button. |
-| Type filter | Feed | Segmented All/Essays/Comics; URL-driven (`?type=`); changing it updates URL + list client-side, no reload (FR-4). |
-| Latest strip | Landing | The 3 newest Posts, reverse-chrono; each links to its Post via client-side nav (FR-3). |
-| Post card (essay) | Feed | Title + date + excerpt; tap → Post. List layout (not grid). |
-| Comic card | Feed | Strip image forward + date + optional caption chip; tap → Post. |
-| Comic viewer | Post (comic) | Dark stage + the Strip + zoom/pan controls. See §Comic Presentation. |
-| Project card | Projects | Title, one-liner, stack chips, live + source affordances; in-app tools link to `/projects/{slug}`. |
-| Pagination | Feed | Prev/Next + page numbers; shareable per-page URLs (FR-5). |
-| Buttons | CTAs | One primary CTA per section (`button-primary`); `button-ghost` for secondary routes. Never more than one primary above the fold per section. |
-| Support pill | content footers | Contribute-style affordance (this is the PRD's "Support Affordance / call-to-action — same concept, renamed `support-pill`"); never a nav item (FR-12). |
-| Scroll-narrative section | Landing | Reveals on scroll into view; respects `prefers-reduced-motion` (instant show). |
+| Component                | Use             | Behavioral rules                                                                                                                                        |
+| ------------------------ | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Top nav                  | all surfaces    | Sticky, condensed on scroll; wordmark → `/`; `Feed · Projects` links; client-side nav (FR-14). `≤640px` collapses to a menu button.                     |
+| Type filter              | Feed            | Segmented All/Essays/Comics; URL-driven (`?type=`); changing it updates URL + list client-side, no reload (FR-4).                                       |
+| Latest strip             | Landing         | The 3 newest Posts, reverse-chrono; each links to its Post via client-side nav (FR-3).                                                                  |
+| Post card (essay)        | Feed            | Title + date + excerpt; tap → Post. List layout (not grid).                                                                                             |
+| Comic card               | Feed            | Strip image forward + date + optional caption chip; tap → Post.                                                                                         |
+| Comic viewer             | Post (comic)    | Dark stage + the Strip + zoom/pan controls. See §Comic Presentation.                                                                                    |
+| Project card             | Projects        | Title, one-liner, stack chips, live + source affordances; in-app tools link to `/projects/{slug}`.                                                      |
+| Pagination               | Feed            | Prev/Next + page numbers; shareable per-page URLs (FR-5).                                                                                               |
+| Buttons                  | CTAs            | One primary CTA per section (`button-primary`); `button-ghost` for secondary routes. Never more than one primary above the fold per section.            |
+| Support pill             | content footers | Contribute-style affordance (this is the PRD's "Support Affordance / call-to-action — same concept, renamed `support-pill`"); never a nav item (FR-12). |
+| Scroll-narrative section | Landing         | Reveals on scroll into view; respects `prefers-reduced-motion` (instant show).                                                                          |
 
 ## Comic Presentation
 
@@ -72,8 +72,9 @@ A product-specific section — comics are core and behave differently from essay
 A **Comic Post page** is a dark `{colors.ink-surface}` stage presenting the single finished Strip (`DESIGN.md` keeps the image edge-to-edge, no rounded mask). Below the strip: the title (Fraunces), date, optional caption (rendered in `{colors.on-surface-variant}` with a `{colors.secondary}` left accent rule — never a Secondary fill, per DESIGN.md contrast rules), optional author afterword, and the Support pill footer. No long-form body. No long-form body.
 
 **Zoom/pan interaction (resolves PRD FR-16, pinned in review):**
+
 - **Fit (default)** — strip scaled to fit its container width; taller-than-viewport strips scroll vertically within the stage.
-- **Toggle zoom** — single tap (touch) or single click (pointer) toggles between *fit* and *100% (1:1)*; double-click/double-tap also toggles fit ↔ 100%.
+- **Toggle zoom** — single tap (touch) or single click (pointer) toggles between _fit_ and _100% (1:1)_; double-click/double-tap also toggles fit ↔ 100%.
 - **Free zoom** — pinch on touch; `+` / `−` on-screen controls; pointer wheel/Ctrl+wheel (UX to pick default — see Open Items). `[CONFIRMED: Ctrl+wheel zoom (not bare-wheel) — preserves page scroll (author, 2026-08-04).]`
 - **Pan** — drag (touch or pointer) while zoomed; confined to the strip bounds (no overpan into chrome).
 - **Reset** — on-screen Reset control returns to fit; `0` key resets; `Esc` resets and exits zoom.
@@ -84,17 +85,17 @@ A **Comic Post page** is a dark `{colors.ink-surface}` stage presenting the sing
 
 ## State Patterns
 
-| State | Surface | Treatment |
-|---|---|---|
-| Empty filter result | Feed | `No posts match that filter yet.` (no icon-heavy empty state). |
-| Pagination beyond end | Feed | Renders no items (never an error). |
-| Post not found | Post | Friendly on-brand 404: `This one's not here.` + links to Feed + Projects. |
-| Image load failure | Post (comic) / card | `Couldn't load the strip. Refresh?` with a retry; alt text remains available to AT. |
-| Zoom active | Comic viewer | Reset control gains emphasis; back-to-fit is always one action. |
-| Draft post | — | Build-time failure, not a runtime state (PRD FR-8); never renders. |
-| Reduced motion | all | Scroll-reveal shows content instantly; viewer zoom transition is instant (no ≤150ms allowance). |
-| Feed cold-load | Feed | First paint shows a skeleton list placeholder; posts populate without spinner churn. |
-| Project demo/source down | Projects card | A dead live-demo or source link is de-emphasised (muted, not clickable), never removed — the card still shows title, summary, and stack chips as the proof point. |
+| State                    | Surface             | Treatment                                                                                                                                                         |
+| ------------------------ | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Empty filter result      | Feed                | `No posts match that filter yet.` (no icon-heavy empty state).                                                                                                    |
+| Pagination beyond end    | Feed                | Renders no items (never an error).                                                                                                                                |
+| Post not found           | Post                | Friendly on-brand 404: `This one's not here.` + links to Feed + Projects.                                                                                         |
+| Image load failure       | Post (comic) / card | `Couldn't load the strip. Refresh?` with a retry; alt text remains available to AT.                                                                               |
+| Zoom active              | Comic viewer        | Reset control gains emphasis; back-to-fit is always one action.                                                                                                   |
+| Draft post               | —                   | Build-time failure, not a runtime state (PRD FR-8); never renders.                                                                                                |
+| Reduced motion           | all                 | Scroll-reveal shows content instantly; viewer zoom transition is instant (no ≤150ms allowance).                                                                   |
+| Feed cold-load           | Feed                | First paint shows a skeleton list placeholder; posts populate without spinner churn.                                                                              |
+| Project demo/source down | Projects card       | A dead live-demo or source link is de-emphasised (muted, not clickable), never removed — the card still shows title, summary, and stack chips as the proof point. |
 
 ## Interaction Primitives
 
@@ -110,7 +111,7 @@ Behavioral. Visual contrast lives in `DESIGN.md`.
 - **Semantic HTML** — landmarks (`header/nav/main/footer`), one `h1` per page, headings ordered; skip-to-content link first-focusable on every surface.
 - **Focus** — visible focus ring on every interactive element; focus order follows reading order; the comic viewer is keyboard-operable and does **not** trap focus (FR-16) — `Tab` moves past it. Auto-hidden zoom controls remain keyboard-focusable while visually hidden (reveal on focus).
 - **Navigation** — the mobile nav menu (`≤640`) closes on `Escape`, on route change, and on outside-click.
-- **Comic alt text is mandatory** (PRD FR-8 enforces at build time) and must **describe the strip's conveyed content/gag**, not merely "a comic." It is the alt text *and* the assistive narrative.
+- **Comic alt text is mandatory** (PRD FR-8 enforces at build time) and must **describe the strip's conveyed content/gag**, not merely "a comic." It is the alt text _and_ the assistive narrative.
 - **Reduced motion** — `prefers-reduced-motion: reduce` disables scroll-reveal fade/slide (instant) and viewer zoom transition (instant; no ≤150ms allowance).
 - **Tap targets** ≥ 44×44 CSS px on touch.
 - **Color** — text/background pairings meet AA contrast in `DESIGN.md` tokens; never encode meaning by color alone (type filter uses text labels, not only color).
@@ -131,7 +132,7 @@ Mobile-first. Breakpoints: `640` (sm), `768` (md), `1024` (lg), `1280` (xl).
 ## Inspiration & Anti-patterns
 
 - **Lifted from Substack:** the clean reading column + per-post page as the canonical share target; the calm, content-forward feed.
-- **Lifted from gag-a-day / Sunday-funny tradition (and modern webcomic readers):** the image-forward strip page with easy zoom-to-read-lettering; the strip *is* the page.
+- **Lifted from humorous / Sunday-funny tradition (and modern webcomic readers):** the image-forward strip page with easy zoom-to-read-lettering; the strip _is_ the page.
 - **Lifted from maker-editorial personal sites (Frank Chimero, Maggie Appleton):** the "made by a person, on purpose" warmth; identity that reads in the hero without a separate About.
 - **Rejected — corporate portfolio templates & tech-bro gradients:** off-brand for a writing-and-comics-first author site.
 - **Rejected — the current "Welcome" hero over a space photo:** a dead-end that tells a visitor nothing and routes no one (PRD §1 problem statement).
@@ -139,7 +140,7 @@ Mobile-first. Breakpoints: `640` (sm), `768` (md), `1024` (lg), `1280` (xl).
 
 ## Key Flows
 
-> **UJ-3 (Clinton publishes)** is a content-pipeline act with *no visitor-facing UI* (PRD Feature Group 4 — Content Pipeline). It has no Key Flow here by design; it is owned by the architecture/content-pipeline contract, not this UX spine. Its edge case (missing Alt Text → build blocks publish) is captured as the mandatory-alt build gate in PRD FR-8 and enforced at build time, never at runtime.
+> **UJ-3 (Clinton publishes)** is a content-pipeline act with _no visitor-facing UI_ (PRD Feature Group 4 — Content Pipeline). It has no Key Flow here by design; it is owned by the architecture/content-pipeline contract, not this UX spine. Its edge case (missing Alt Text → build blocks publish) is captured as the mandatory-alt build gate in PRD FR-8 and enforced at build time, never at runtime.
 
 ### Flow 1 — Maya lands and reads the new strip (UJ-1)
 
@@ -173,7 +174,7 @@ Empty state: Projects has at least the migrated tools, so not empty; if a live d
 4. She taps Reset (or `Esc`) → back to fit.
 5. **Climax:** she read the gag and the experience was under her control — one tap reset all the way out.
 6. If she instead uses keyboard (desktop): `+` zooms, arrow keys pan, `Esc` resets; focus never trapped, `Tab` leaves the viewer.
-7. **Failure:** none — zoom has no network failure mode; the controls are present whenever the strip renders. A strip that fails to load is handled by the *Image load failure* state, not the viewer.
+7. **Failure:** none — zoom has no network failure mode; the controls are present whenever the strip renders. A strip that fails to load is handled by the _Image load failure_ state, not the viewer.
 
 ## Resolved Decisions
 

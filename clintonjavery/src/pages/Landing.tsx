@@ -67,7 +67,7 @@ export default function Landing() {
             <em className="italic text-accent-mint">build things</em>.
           </h1>
           <p className="max-w-[52ch] font-body text-body-lg leading-prose text-ink-variant">
-            A personal publishing studio for gag-a-day comics and the occasional
+            A personal publishing studio for humorous comics and the occasional
             technical essay — plus the small tools I build along the way. New here
             every week.
           </p>
@@ -131,7 +131,7 @@ export default function Landing() {
           </h2>
           <p className="mt-4 max-w-prose-max font-body text-body-lg leading-prose text-on-surface-variant">
             Essays on engineering, craft, and the occasional stubborn problem;
-            gag-a-day comics drawn in Krita. New here every week.
+            humorous comics drawn in Krita. New here every week.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
             <Link
