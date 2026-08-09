@@ -77,14 +77,15 @@ export function ComicCard({ post }: { post: ComicPost }) {
   );
 }
 
-/** Comic card image — a fixed-height TOP SLICE preview of the strip (the card
- *  is a `<Link>` to `/p/<slug>`, so a click goes to the full zoom/pan
- *  ComicViewer). The `<img>` keeps full width (`w-full h-auto`); a
- *  `overflow-hidden` fixed-height viewport clips everything past the slice,
- *  so a tall strip shows its first panel/beginning with no width crop. A subtle
- *  bottom fade signals "more below — click in". The 1.4-style load-failure
- *  retry is preserved; on error the `<img>` stays `sr-only` so its `alt` stays
- *  in the a11y tree. */
+/** Comic card image — a fixed-height TOP/START SLICE preview of the strip
+ *  (the card is a `<Link>` to `/p/<slug>`, so a click goes to the full zoom/pan
+ *  ComicViewer). The image uses `object-cover` anchored `object-left-top`, so the
+ *  fixed-height viewport is filled for ANY strip aspect (portrait fills the
+ *  width, landscape fills the height) and the long axis crops — showing the
+ *  strip's beginning (top for tall, left for wide) with no blank space on
+ *  narrow/mobile cards. A subtle bottom fade signals "more below — click in".
+ *  The 1.4-style load-failure retry is preserved; on error the `<img>` stays
+ *  `sr-only` so its `alt` stays in the a11y tree. */
 function ComicCardImage({ post }: { post: ComicPost }) {
   const [failed, setFailed] = useState(false);
   const [retryKey, setRetryKey] = useState(0);
@@ -96,7 +97,7 @@ function ComicCardImage({ post }: { post: ComicPost }) {
         alt={post.strip.alt}
         onError={() => setFailed(true)}
         loading="lazy"
-        className={failed ? 'sr-only' : 'block h-auto w-full'}
+        className={failed ? 'sr-only' : 'block h-full w-full object-cover object-left-top'}
       />
       {/* bottom fade — "more below, click in" (decorative, not in a11y tree) */}
       {!failed ? (
